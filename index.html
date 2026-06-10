@@ -3,844 +3,771 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merid Tesfay | ML Researcher</title>
+  <title>Merid Tesfay — ML Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    :root{
-      --navy:#0B1F3A;
-      --navy2:#0f2544;
-      --blue:#1A6DC7;
-      --blue-l:#4A9FE8;
-      --accent:#00C9A7;
-      --accent2:#00a98b;
-      --text:#E8EDF3;
-      --muted:#8A9BB5;
-      --border:#1E3558;
-      --card:#0d2240;
-      --card2:#112849;
-      --serif:'DM Serif Display',serif;
-      --mono:'DM Mono',monospace;
-      --sans:'Outfit',sans-serif;
+    :root {
+      --bg: #06060f;
+      --bg2: #0c0c18;
+      --surface: rgba(255,255,255,0.042);
+      --surface2: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.15);
+      --text: #eeeeff;
+      --muted: rgba(200,200,240,0.48);
+      --v1: #8B5CF6;
+      --v2: #A78BFA;
+      --g1: #34D399;
+      --g2: #6EE7B7;
+      --b1: #60A5FA;
+      --display: 'Instrument Serif', serif;
+      --sans: 'Plus Jakarta Sans', sans-serif;
+      --mono: 'Space Grotesk', sans-serif;
     }
 
-    html{scroll-behavior:smooth}
+    html { scroll-behavior: smooth; }
 
-    body{
-      background:var(--navy);
-      color:var(--text);
-      font-family:var(--sans);
-      font-size:15px;
-      line-height:1.7;
-      overflow-x:hidden;
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    /* DOT GRID BACKGROUND */
-    body::before{
-      content:'';
-      position:fixed;
-      inset:0;
-      background-image:radial-gradient(circle, rgba(26,109,199,0.12) 1px, transparent 1px);
-      background-size:32px 32px;
-      pointer-events:none;
-      z-index:0;
+    /* AURORA */
+    .aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .aurora-blob { position: absolute; border-radius: 50%; filter: blur(90px); }
+    .aurora-blob:nth-child(1) {
+      width: 700px; height: 700px; opacity: 0.16;
+      background: radial-gradient(circle, #7C3AED, transparent 70%);
+      top: -200px; left: -150px;
+      animation: drift1 20s ease-in-out infinite;
     }
-
-    /* SOFT TEAL HERO GLOW */
-    body::after{
-      content:'';
-      position:fixed;
-      top:-10%;left:50%;
-      transform:translateX(-50%);
-      width:900px;height:900px;
-      background:radial-gradient(circle, rgba(0,201,167,0.06) 0%, transparent 60%);
-      pointer-events:none;
-      z-index:0;
+    .aurora-blob:nth-child(2) {
+      width: 580px; height: 580px; opacity: 0.14;
+      background: radial-gradient(circle, #2563EB, transparent 70%);
+      top: 25%; right: -80px;
+      animation: drift2 25s ease-in-out infinite;
     }
+    .aurora-blob:nth-child(3) {
+      width: 480px; height: 480px; opacity: 0.12;
+      background: radial-gradient(circle, #059669, transparent 70%);
+      bottom: 15%; left: 35%;
+      animation: drift3 30s ease-in-out infinite;
+    }
+    @keyframes drift1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(55px,45px) scale(1.08)} 66%{transform:translate(-25px,65px) scale(0.93)} }
+    @keyframes drift2 { 0%,100%{transform:translate(0,0) scale(1)} 40%{transform:translate(-70px,45px) scale(1.12)} 70%{transform:translate(35px,-55px) scale(0.96)} }
+    @keyframes drift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(55px,-35px) scale(1.1)} }
 
     /* NAV */
-    nav{
-      position:sticky;top:0;z-index:100;
-      background:rgba(11,31,58,0.85);
-      backdrop-filter:blur(16px);
-      -webkit-backdrop-filter:blur(16px);
-      border-bottom:1px solid rgba(30,53,88,0.8);
-      padding:0 2rem;
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(6,6,15,0.78);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
     }
-    .nav-inner{
-      max-width:1100px;margin:0 auto;
-      display:flex;align-items:center;justify-content:space-between;
-      height:58px;
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
     }
-    .logo{
-      font-family:var(--mono);font-size:14px;font-weight:500;
-      color:var(--accent);letter-spacing:0.06em;
-      display:flex;align-items:center;gap:8px;
+    .logo {
+      font-family: var(--mono); font-size: 14px; font-weight: 500;
+      background: linear-gradient(120deg, var(--v2), var(--g1));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      letter-spacing: 0.05em;
     }
-    .logo-dot{
-      width:6px;height:6px;border-radius:50%;
-      background:var(--accent);
-      animation:pulse 2s ease-in-out infinite;
+    .nav-links { display: flex; gap: 2.4rem; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+      transition: color 0.2s;
     }
-    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-    .nav-links{display:flex;gap:2.2rem}
-    .nav-links a{
-      color:var(--muted);text-decoration:none;font-size:12px;
-      letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
-      transition:color 0.2s;position:relative;padding-bottom:2px;
-    }
-    .nav-links a::after{
-      content:'';position:absolute;bottom:0;left:0;right:0;
-      height:1px;background:var(--accent);
-      transform:scaleX(0);transition:transform 0.2s;
-    }
-    .nav-links a:hover{color:var(--text)}
-    .nav-links a:hover::after{transform:scaleX(1)}
+    .nav-links a:hover { color: var(--text); }
 
-    /* SECTIONS */
-    section{position:relative;z-index:1}
-    .section-inner{max-width:1100px;margin:0 auto;padding:6rem 2rem}
+    /* LAYOUT */
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+    section { padding: 7rem 0; position: relative; z-index: 1; }
+    hr.div { border: none; border-top: 1px solid var(--border); position: relative; z-index: 1; }
 
-    /* SECTION LABELS */
-    .sec-label{
-      font-family:var(--mono);font-size:11px;color:var(--accent);
-      letter-spacing:0.18em;text-transform:uppercase;
-      margin-bottom:0.6rem;
-      display:flex;align-items:center;gap:10px;
+    /* LABEL + TITLE */
+    .label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      background: linear-gradient(90deg, var(--v2), var(--g1));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 0.7rem; display: block;
     }
-    .sec-label::before{content:'';width:28px;height:1px;background:var(--accent)}
-    .sec-title{
-      font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);
-      color:#fff;margin-bottom:3rem;line-height:1.2;
-    }
-
-    /* DIVIDER */
-    hr.divider{
-      border:none;
-      border-top:1px solid var(--border);
-      max-width:1100px;margin:0 auto;
-      position:relative;z-index:1;
+    .section-title {
+      font-size: clamp(2rem, 3.8vw, 2.8rem); font-weight: 800; color: #fff;
+      margin-bottom: 3rem; line-height: 1.1; letter-spacing: -0.025em;
     }
 
     /* HERO */
-    .hero{
-      min-height:92vh;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;text-align:center;
-      max-width:760px;margin:0 auto;padding:6rem 2rem 4rem;
-      position:relative;z-index:1;
+    .hero-wrap {
+      min-height: 95vh; display: flex; align-items: center;
+      padding: 5rem 0 3rem; position: relative; z-index: 1;
     }
-    .hero-tag{
-      font-family:var(--mono);font-size:11px;color:var(--accent);
-      letter-spacing:0.18em;text-transform:uppercase;
-      margin-bottom:1.6rem;
-      display:flex;align-items:center;gap:10px;
+    .hero-content {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: grid; grid-template-columns: 1fr 200px; gap: 5rem; align-items: center;
     }
-    .hero-tag::before{content:'';width:28px;height:1px;background:var(--accent)}
-    .hero-tag::after{content:'';width:28px;height:1px;background:var(--accent)}
-    .hero h1{
-      font-family:var(--serif);
-      font-size:clamp(3rem,6vw,5.2rem);
-      line-height:1.08;margin-bottom:1rem;color:#fff;
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 12px;
     }
-    .hero-role{
-      font-size:1.15rem;color:var(--text);
-      font-weight:400;margin-bottom:1.6rem;
+    .hero-eyebrow::before {
+      content: ''; width: 32px; height: 1px;
+      background: linear-gradient(90deg, var(--v1), transparent);
     }
-    .hero-sub{
-      font-size:1.02rem;color:var(--muted);
-      max-width:600px;margin:0 auto 1.6rem;
-      font-weight:300;line-height:1.8;
+    .hero h1 {
+      font-family: var(--display); font-style: italic; font-weight: 400;
+      font-size: clamp(4rem, 7.5vw, 6.4rem); line-height: 1; color: #fff;
+      margin-bottom: 1.1rem; letter-spacing: -0.02em;
     }
-    .hero-focus{
-      font-family:var(--mono);font-size:12px;color:var(--muted);
-      letter-spacing:0.04em;margin-bottom:2.8rem;
+    .hero-role { font-size: 1.1rem; color: var(--muted); margin-bottom: 1.2rem; line-height: 1.6; }
+    .hero-sub {
+      font-size: 14.5px; color: rgba(200,200,240,0.52); max-width: 560px;
+      line-height: 1.85; margin-bottom: 2.6rem; font-weight: 300;
     }
-    .hero-stats{
-      display:flex;gap:3rem;margin-bottom:2.8rem;flex-wrap:wrap;
-      justify-content:center;
-    }
-    .stat-item{text-align:center}
-    .stat-num{
-      font-family:var(--mono);font-size:2.2rem;font-weight:500;
-      color:var(--accent);display:block;line-height:1;
-    }
-    .stat-label{
-      font-size:11px;color:var(--muted);
-      letter-spacing:0.08em;text-transform:uppercase;margin-top:5px;
-    }
-    .hero-btns{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center}
-    .btn-primary{
-      background:var(--accent);color:var(--navy);
-      padding:0.75rem 1.8rem;border-radius:5px;
-      text-decoration:none;font-weight:600;font-size:13.5px;
-      letter-spacing:0.02em;transition:all 0.2s;
-    }
-    .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
-    .btn-outline{
-      border:1px solid var(--border);color:var(--text);
-      padding:0.75rem 1.8rem;border-radius:5px;
-      text-decoration:none;font-size:13.5px;
-      transition:all 0.2s;
-    }
-    .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+    .hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
-    /* SCROLL ANIMATIONS */
-    .reveal{
-      opacity:0;transform:translateY(24px);
-      transition:opacity 0.6s ease,transform 0.6s ease;
+    .btn-violet {
+      background: linear-gradient(135deg, var(--v1), #6D28D9);
+      color: #fff; padding: 0.72rem 1.8rem; border-radius: 100px;
+      text-decoration: none; font-weight: 700; font-size: 13.5px;
+      transition: all 0.25s; box-shadow: 0 0 28px rgba(139,92,246,0.32);
+      letter-spacing: 0.01em;
     }
-    .reveal.visible{opacity:1;transform:translateY(0)}
+    .btn-violet:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(139,92,246,0.55); }
+    .btn-ghost {
+      background: transparent; border: 1px solid var(--border2);
+      color: var(--text); padding: 0.72rem 1.8rem; border-radius: 100px;
+      text-decoration: none; font-size: 13.5px; transition: all 0.22s;
+    }
+    .btn-ghost:hover { border-color: rgba(167,139,250,0.5); color: var(--v2); transform: translateY(-2px); }
 
-    /* FEATURED PROJECT */
-    .featured-card{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:10px;overflow:hidden;margin-bottom:1.5rem;
-      transition:border-color 0.2s,transform 0.2s;
-      position:relative;
+    .hero-stats { display: flex; flex-direction: column; gap: 1rem; }
+    .hstat {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 1.4rem 1.6rem; backdrop-filter: blur(12px);
+      text-align: center; transition: border-color 0.2s;
     }
-    .featured-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-    .featured-bar{
-      height:4px;
-      background:linear-gradient(90deg,var(--accent),var(--blue-l),var(--blue));
+    .hstat:hover { border-color: rgba(52,211,153,0.25); }
+    .hstat-num {
+      font-size: 2.6rem; font-weight: 800; line-height: 1; display: block; margin-bottom: 4px;
+      background: linear-gradient(135deg, var(--v2), var(--g1));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .featured-inner{padding:2rem 2.2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
-    .featured-label{
-      font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
-      text-transform:uppercase;color:var(--accent);
-      background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.25);
-      padding:3px 10px;border-radius:3px;display:inline-block;margin-bottom:0.8rem;
-    }
-    .featured-badge{
-      font-family:var(--mono);font-size:10px;color:var(--muted);
-      letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem;
-    }
-    .featured-card h3{
-      font-family:var(--serif);font-size:1.7rem;color:#fff;
-      margin-bottom:0.9rem;line-height:1.2;
-    }
-    .featured-card p{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:1.4rem}
-    .featured-stats{
-      display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.4rem;
-    }
-    .fstat{text-align:center;background:rgba(26,109,199,0.1);border:1px solid rgba(26,109,199,0.2);border-radius:6px;padding:0.8rem 1.2rem}
-    .fstat-num{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--accent);display:block;line-height:1}
-    .fstat-label{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px}
+    .hstat-label { font-size: 10.5px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
-    /* PROJECT GRID */
-    .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.4rem}
-    .project-card{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:10px;overflow:hidden;
-      display:flex;flex-direction:column;
-      transition:border-color 0.2s,transform 0.2s;
-    }
-    .project-card:hover{border-color:var(--blue);transform:translateY(-3px)}
-    .card-header{
-      height:5px;
-    }
-    .card-header.cv{background:linear-gradient(90deg,#1A6DC7,#4A9FE8)}
-    .card-header.ml{background:linear-gradient(90deg,#00C9A7,#1A6DC7)}
-    .card-header.geo{background:linear-gradient(90deg,#0091E6,#00C9A7)}
-    .card-header.eng{background:linear-gradient(90deg,#7C3AED,#1A6DC7)}
-    .card-body{padding:1.5rem;display:flex;flex-direction:column;flex:1}
-    .project-badge{
-      font-family:var(--mono);font-size:10px;color:var(--muted);
-      letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.7rem;
-    }
-    .project-card h3{
-      font-family:var(--serif);font-size:1.15rem;color:#fff;
-      margin-bottom:0.7rem;line-height:1.3;
-    }
-    .project-card p{
-      font-size:13px;color:var(--muted);flex:1;
-      margin-bottom:1.2rem;line-height:1.65;
-    }
-    .tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.2rem}
-    .tag{
-      font-family:var(--mono);font-size:10px;
-      background:rgba(26,109,199,0.12);
-      border:1px solid rgba(26,109,199,0.25);
-      color:var(--blue-l);padding:3px 8px;border-radius:3px;letter-spacing:0.03em;
-    }
-    .tag.green{
-      background:rgba(0,201,167,0.1);
-      border-color:rgba(0,201,167,0.3);color:var(--accent);
-    }
-    .card-link{
-      font-family:var(--mono);font-size:11px;color:var(--blue-l);
-      text-decoration:none;letter-spacing:0.06em;
-      display:flex;align-items:center;gap:6px;margin-top:auto;
-      transition:color 0.2s;
-    }
-    .card-link:hover{color:var(--accent)}
-    .card-link svg{transition:transform 0.2s}
-    .card-link:hover svg{transform:translateX(3px)}
+    /* SCROLL REVEAL */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    /* SKILLS */
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
-    .skill-card{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:10px;padding:1.4rem;
-      transition:border-color 0.2s;
-    }
-    .skill-card:hover{border-color:var(--border);border-color:rgba(0,201,167,0.3)}
-    .skill-card-title{
-      font-family:var(--mono);font-size:10.5px;color:var(--accent);
-      letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;
-      display:flex;align-items:center;gap:8px;
-    }
-    .skill-card-title::before{
-      content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;
-    }
-    .skill-list{display:flex;flex-wrap:wrap;gap:5px}
-    .skill-pill{
-      font-size:12px;color:var(--muted);
-      background:rgba(255,255,255,0.03);
-      border:1px solid var(--border);
-      padding:4px 10px;border-radius:4px;
-      transition:color 0.2s,border-color 0.2s;
-    }
-    .skill-pill:hover{color:var(--text);border-color:rgba(74,159,232,0.4)}
+    /* ── BENTO GRID ── */
+    .bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; }
 
-    /* TIMELINE */
-    .timeline{position:relative;padding-left:2rem}
-    .timeline::before{
-      content:'';position:absolute;left:0;top:8px;bottom:8px;
-      width:1px;background:var(--border);
+    .bento-featured {
+      grid-column: span 8; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 22px; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s; position: relative;
     }
-    .timeline-item{
-      position:relative;padding:0 0 2.5rem 2rem;
+    .bento-featured:hover { border-color: rgba(139,92,246,0.38); transform: translateY(-2px); }
+    .bento-featured::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(140deg, rgba(139,92,246,0.05), rgba(16,185,129,0.03));
+      pointer-events: none;
     }
-    .timeline-item:last-child{padding-bottom:0}
-    .timeline-dot{
-      position:absolute;left:-2rem;top:6px;
-      width:9px;height:9px;border-radius:50%;
-      background:var(--accent);border:2px solid var(--navy);
-      transform:translateX(calc(-50% + 0.5px));
-    }
-    .timeline-date{
-      font-family:var(--mono);font-size:11px;color:var(--muted);
-      letter-spacing:0.06em;margin-bottom:0.4rem;
-    }
-    .timeline-org{
-      font-family:var(--mono);font-size:10.5px;color:var(--accent);
-      letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;
-    }
-    .timeline-role{font-size:1rem;font-weight:500;color:#fff;margin-bottom:0.4rem}
-    .timeline-desc{font-size:13px;color:var(--muted);line-height:1.65;max-width:640px}
+    .accent-bar { height: 3px; background: linear-gradient(90deg, var(--v1), var(--b1), var(--g1)); }
+    .feat-inner { padding: 2.2rem 2.4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; }
 
-    /* EDUCATION GRID */
-    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:3.5rem}
-    .edu-card{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:10px;padding:1.7rem;
-      transition:border-color 0.2s;
+    .bento-side { grid-column: span 4; display: flex; flex-direction: column; gap: 1rem; }
+    .bst-card {
+      flex: 1; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 22px; padding: 1.8rem 1.6rem;
+      display: flex; flex-direction: column; justify-content: center;
+      transition: border-color 0.22s;
     }
-    .edu-card:hover{border-color:rgba(26,109,199,0.4)}
-    .edu-year{
-      font-family:var(--mono);font-size:11px;color:var(--muted);
-      letter-spacing:0.08em;margin-bottom:0.6rem;
+    .bst-card:hover { border-color: rgba(52,211,153,0.3); }
+    .bst-num {
+      font-size: 3rem; font-weight: 800; line-height: 1; display: block; margin-bottom: 5px;
+      background: linear-gradient(135deg, var(--g1), var(--b1));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .edu-degree{font-family:var(--serif);font-size:1.15rem;color:#fff;margin-bottom:0.3rem}
-    .edu-uni{font-size:13px;color:var(--blue-l);margin-bottom:0.8rem}
-    .edu-detail{font-size:13px;color:var(--muted);line-height:1.6}
+    .bst-label { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+    .bst-desc { font-size: 12.5px; color: rgba(200,200,240,0.38); margin-top: 7px; line-height: 1.55; }
 
-    /* CONTACT */
-    .contact-wrap{max-width:640px}
-    .contact-sub{color:var(--muted);font-size:15px;line-height:1.75;margin-bottom:2.4rem}
-    .contact-row{display:flex;gap:0.8rem;flex-wrap:wrap}
-    .contact-link{
-      display:flex;align-items:center;gap:9px;
-      background:var(--card);border:1px solid var(--border);
-      border-radius:7px;padding:0.85rem 1.3rem;
-      text-decoration:none;color:var(--text);font-size:13.5px;
-      transition:all 0.2s;
+    .bento-card {
+      grid-column: span 4; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 22px; overflow: hidden; display: flex; flex-direction: column;
+      transition: border-color 0.25s, transform 0.25s;
     }
-    .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
-    .contact-icon{font-size:15px;color:var(--muted)}
-    .contact-link:hover .contact-icon{color:var(--accent)}
-    .contact-interests{margin-top:2.4rem}
-    .interests-label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.9rem}
-    .interests-tags{display:flex;gap:0.6rem;flex-wrap:wrap}
+    .bento-card:hover { border-color: rgba(96,165,250,0.35); transform: translateY(-3px); }
+    .bento-card.em:hover { border-color: rgba(52,211,153,0.35); }
+    .bento-card.vi:hover { border-color: rgba(139,92,246,0.35); }
+
+    .bc-bar { height: 3px; }
+    .bc-bar.blue   { background: linear-gradient(90deg, var(--b1), #818CF8); }
+    .bc-bar.emerald{ background: linear-gradient(90deg, var(--g1), var(--b1)); }
+    .bc-bar.violet { background: linear-gradient(90deg, var(--v1), var(--b1)); }
+    .bc-bar.pink   { background: linear-gradient(90deg, #EC4899, var(--v1)); }
+
+    .bc-body { padding: 1.5rem 1.6rem; flex: 1; display: flex; flex-direction: column; }
+    .bc-badge {
+      font-family: var(--mono); font-size: 10px; color: var(--muted);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.65rem;
+    }
+    .bc-title { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.65rem; line-height: 1.3; }
+    .bc-desc { font-size: 13px; color: var(--muted); flex: 1; line-height: 1.68; margin-bottom: 1.1rem; }
+    .bc-link {
+      font-family: var(--mono); font-size: 11px; color: var(--b1); text-decoration: none;
+      display: flex; align-items: center; gap: 6px; margin-top: auto;
+      transition: color 0.2s; letter-spacing: 0.05em;
+    }
+    .bc-link:hover { color: var(--g1); }
+    .bc-link svg { transition: transform 0.2s; }
+    .bc-link:hover svg { transform: translateX(3px); }
+
+    /* Tags */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1rem; }
+    .tag {
+      font-family: var(--mono); font-size: 10px; padding: 3px 9px;
+      border-radius: 5px; letter-spacing: 0.02em;
+    }
+    .tag.blue   { background: rgba(96,165,250,0.1);  border: 1px solid rgba(96,165,250,0.25);  color: var(--b1); }
+    .tag.green  { background: rgba(52,211,153,0.1);  border: 1px solid rgba(52,211,153,0.28);  color: var(--g1); }
+    .tag.violet { background: rgba(139,92,246,0.1);  border: 1px solid rgba(139,92,246,0.28);  color: var(--v2); }
+
+    /* Featured inner elements */
+    .feat-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      background: rgba(139,92,246,0.14); border: 1px solid rgba(139,92,246,0.32);
+      color: var(--v2); padding: 3px 10px; border-radius: 5px;
+      display: inline-block; margin-bottom: 0.8rem;
+    }
+    .feat-badge { font-family: var(--mono); font-size: 10.5px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 0.55rem; }
+    .feat-title { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 0.9rem; line-height: 1.2; letter-spacing: -0.02em; }
+    .feat-desc { font-size: 13.5px; color: var(--muted); line-height: 1.78; margin-bottom: 1.4rem; }
+    .feat-stats { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .fst {
+      background: rgba(96,165,250,0.07); border: 1px solid rgba(96,165,250,0.17);
+      border-radius: 12px; padding: 0.85rem 1.1rem; text-align: center; min-width: 80px;
+    }
+    .fst-num { font-size: 1.5rem; font-weight: 800; color: var(--g1); display: block; line-height: 1; }
+    .fst-label { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── SKILLS ── */
+    .skills-container { display: flex; flex-direction: column; gap: 2rem; }
+    .skill-group-title {
+      font-family: var(--mono); font-size: 11px; color: var(--muted);
+      letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .skill-group-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .skill-cloud { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .spill {
+      font-size: 13px; padding: 6px 14px; border-radius: 9px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); transition: all 0.22s; cursor: default;
+    }
+    .spill:hover { color: var(--text); border-color: var(--border2); background: var(--surface2); }
+    .spill.v:hover { border-color: rgba(139,92,246,0.42); color: var(--v2); }
+    .spill.g:hover { border-color: rgba(52,211,153,0.42); color: var(--g1); }
+    .spill.b:hover { border-color: rgba(96,165,250,0.42); color: var(--b1); }
+
+    /* ── BACKGROUND SECTION ── */
+    #background { background: var(--bg2); }
+    .exp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+    .edu-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+    .edu-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 18px; padding: 1.7rem; transition: border-color 0.2s;
+    }
+    .edu-card:hover { border-color: rgba(96,165,250,0.3); }
+    .edu-year { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+    .edu-deg { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+    .edu-uni { font-size: 13px; color: var(--b1); margin-bottom: 0.8rem; }
+    .edu-detail { font-size: 13px; color: var(--muted); line-height: 1.62; }
+
+    .timeline { display: flex; flex-direction: column; }
+    .tl-item { display: flex; gap: 1.5rem; padding-bottom: 2.2rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-left { display: flex; flex-direction: column; align-items: center; width: 20px; flex-shrink: 0; }
+    .tl-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+      background: linear-gradient(135deg, var(--v1), var(--g1));
+    }
+    .tl-line { flex: 1; width: 1px; background: var(--border); margin-top: 5px; }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-date { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 3px; }
+    .tl-org { font-family: var(--mono); font-size: 10.5px; color: var(--v2); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+    .tl-role { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+    .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.68; max-width: 500px; }
+
+    /* ── CONTACT ── */
+    .contact-inner { max-width: 680px; }
+    .contact-heading {
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 800; color: #fff;
+      margin-bottom: 1.4rem; line-height: 1.08; letter-spacing: -0.03em;
+    }
+    .contact-heading span {
+      background: linear-gradient(130deg, var(--v2), var(--g1));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .contact-sub { color: var(--muted); font-size: 16px; line-height: 1.78; margin-bottom: 2.5rem; }
+    .contact-row { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .clink {
+      display: flex; align-items: center; gap: 9px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 11px; padding: 0.9rem 1.4rem;
+      text-decoration: none; color: var(--text); font-size: 14px;
+      transition: all 0.22s;
+    }
+    .clink:hover { border-color: rgba(139,92,246,0.42); color: var(--v2); transform: translateY(-2px); }
+    .clink-icon { font-size: 14px; }
+    .interest-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2.5rem; }
 
     /* FOOTER */
-    .footer{
-      text-align:center;padding:2.5rem 2rem;
-      font-family:var(--mono);font-size:11px;
-      color:var(--border);letter-spacing:0.1em;
-      position:relative;z-index:1;
+    footer {
+      text-align: center; padding: 2.5rem 2rem; position: relative; z-index: 1;
+      font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.14); letter-spacing: 0.1em;
     }
 
     /* RESPONSIVE */
-    @media(max-width:900px){
-      .hero{min-height:auto;padding-top:4rem}
-      .featured-inner{grid-template-columns:1fr}
-      .edu-grid{grid-template-columns:1fr}
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-stats { flex-direction: row; justify-content: flex-start; }
+      .feat-inner { grid-template-columns: 1fr; }
+      .bento-featured { grid-column: span 12; }
+      .bento-side { grid-column: span 12; flex-direction: row; }
+      .bento-card { grid-column: span 6; }
+      .exp-layout { grid-template-columns: 1fr; gap: 3rem; }
     }
-    @media(max-width:640px){
-      .hero h1{font-size:2.6rem}
-      .section-inner{padding:4rem 1.4rem}
-      .hero{padding:3rem 1.4rem 2rem}
-      .nav-links{gap:1.4rem}
-      .hero-stats{gap:2rem}
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 3.4rem; }
+      section { padding: 5rem 0; }
+      .bento-card { grid-column: span 12; }
+      .bento-side { grid-column: span 12; flex-direction: column; }
+      .bento { gap: 0.75rem; }
+      .nav-links { gap: 1.4rem; }
+      .hero-stats { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
+<div class="aurora" aria-hidden="true">
+  <div class="aurora-blob"></div>
+  <div class="aurora-blob"></div>
+  <div class="aurora-blob"></div>
+</div>
+
 <nav>
   <div class="nav-inner">
-    <div class="logo">
-      <div class="logo-dot"></div>
-      merid.t
-    </div>
+    <div class="logo">merid.t</div>
     <div class="nav-links">
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
-      <a href="#experience">Background</a>
+      <a href="#background">Background</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">ML Researcher · Computer Vision</div>
-  <h1>Merid Tesfay</h1>
-  <p class="hero-role">Machine learning researcher in medical image analysis and computer vision</p>
-  <p class="hero-sub">I am an MSc Computer Engineering student on the AI/ML track at the University of Trento. My thesis builds self-supervised models that classify brain pathology in CT scans, trained on 500 clinical volumes across 155 controlled experiments. I work closely with a hospital radiology department to keep the research grounded in real clinical needs.</p>
-  <p class="hero-focus">Self-supervised learning · Medical image analysis · Computer vision</p>
-  <div class="hero-stats">
-    <div class="stat-item">
-      <span class="stat-num" data-target="155">0</span>
-      <span class="stat-label">ML experiments</span>
+<div class="hero-wrap">
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">ML Researcher · Computer Vision · Medical AI</div>
+      <h1>Merid Tesfay</h1>
+      <p class="hero-role">Machine learning researcher in medical image analysis and computer vision</p>
+      <p class="hero-sub">MSc Computer Engineering (AI/ML) at University of Trento. Building self-supervised models for brain pathology classification in CT scans — 500 clinical volumes, 155 experiments, clinical collaboration with ASUIT Trento Hospital.</p>
+      <div class="hero-btns">
+        <a class="btn-violet" href="#contact">Get in touch</a>
+        <a class="btn-ghost" href="https://github.com/meridtesfay" target="_blank">GitHub</a>
+        <a class="btn-ghost" href="#projects">View work</a>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num" data-target="500">0</span>
-      <span class="stat-label">Patient dataset</span>
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="hstat-num" data-target="155">0</span>
+        <span class="hstat-label">ML Experiments</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num" data-target="500">0</span>
+        <span class="hstat-label">Patient Dataset</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-num" data-target="9">0</span>
+        <span class="hstat-label">Projects</span>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-num" data-target="9">0</span>
-      <span class="stat-label">Research projects</span>
-    </div>
-  </div>
-  <div class="hero-btns">
-    <a class="btn-primary" href="#contact">Get in touch</a>
-    <a class="btn-outline" href="https://github.com/meridtesfay" target="_blank">GitHub</a>
-    <a class="btn-outline" href="#projects">View work</a>
   </div>
 </div>
 
-<hr class="divider">
+<hr class="div" style="max-width:1200px;margin:0 auto;">
 
-<!-- PROJECTS -->
+<!-- PROJECTS (BENTO) -->
 <section id="projects">
-  <div class="section-inner">
-    <div class="sec-label reveal">Work</div>
-    <div class="sec-title reveal">Research Projects</div>
+  <div class="page">
+    <span class="label reveal">Work</span>
+    <div class="section-title reveal">Research Projects</div>
 
-    <!-- Featured -->
-    <div class="featured-card reveal">
-      <div class="featured-bar"></div>
-      <div class="featured-inner">
-        <div>
-          <div class="featured-label">Lead Project</div>
-          <div class="featured-badge">MSc Thesis · 2024–2026</div>
-          <h3>Brain CT Multi-Label Pathology Classification</h3>
-          <p>Two-stage SSL pipeline on 500 clinical CT volumes. Stage 1: SwinUNETR Masked Autoencoder for 3D volumetric pretraining. Stage 2: SimCLR, BYOL, and Barlow Twins at slice level with MIL and gated attention pooling. 155 controlled experiments across architectures and SSL objectives. Clinical collaboration with ASUIT Trento Hospital Radiology Department.</p>
-          <div class="tag-row">
-            <span class="tag">PyTorch</span><span class="tag">MONAI</span>
-            <span class="tag">SwinUNETR</span><span class="tag">SimCLR</span>
-            <span class="tag">BYOL</span><span class="tag">HPC/SLURM</span>
+    <div class="bento">
+      <!-- Featured spans 8 cols -->
+      <div class="bento-featured reveal">
+        <div class="accent-bar"></div>
+        <div class="feat-inner">
+          <div>
+            <span class="feat-label">Lead Project</span>
+            <div class="feat-badge">MSc Thesis · 2024–2026</div>
+            <div class="feat-title">Brain CT Multi-Label Pathology Classification</div>
+            <p class="feat-desc">Two-stage SSL pipeline on 500 clinical CT volumes. Stage 1: SwinUNETR Masked Autoencoder for 3D volumetric pretraining. Stage 2: SimCLR, BYOL, and Barlow Twins at slice level with MIL and gated attention pooling. 155 controlled experiments. Clinical collaboration with ASUIT Trento Hospital Radiology Department.</p>
+            <div class="tag-row">
+              <span class="tag blue">PyTorch</span><span class="tag blue">MONAI</span>
+              <span class="tag blue">SwinUNETR</span><span class="tag violet">SimCLR</span>
+              <span class="tag violet">BYOL</span><span class="tag blue">HPC / SLURM</span>
+            </div>
+            <a class="bc-link" href="https://github.com/meridtesfay" target="_blank">
+              Under review
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay" target="_blank">
-            Under review
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-        <div>
-          <div class="featured-stats">
-            <div class="fstat"><span class="fstat-num">155</span><span class="fstat-label">Experiments</span></div>
-            <div class="fstat"><span class="fstat-num">500</span><span class="fstat-label">CT volumes</span></div>
-            <div class="fstat"><span class="fstat-num">3</span><span class="fstat-label">SSL methods</span></div>
+          <div>
+            <div class="feat-stats">
+              <div class="fst"><span class="fst-num">155</span><span class="fst-label">Experiments</span></div>
+              <div class="fst"><span class="fst-num">500</span><span class="fst-label">CT Volumes</span></div>
+              <div class="fst"><span class="fst-num">3</span><span class="fst-label">SSL Methods</span></div>
+            </div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.72">Supervisors: Prof. Farid Melgani, Dr. Selene Tomassini. Systematic ablation over batch sizes, projection heads, and augmentation strengths. Evaluated SwinUNETR MAE pretraining against slice-level contrastive objectives.</p>
           </div>
-          <p style="font-size:13px;color:var(--muted);line-height:1.65">Supervisors: Prof. Farid Melgani, Dr. Selene Tomassini. Evaluated SwinUNETR MAE pretraining against slice-level contrastive objectives with systematic ablation over batch sizes, projection heads, and augmentation strengths.</p>
         </div>
       </div>
-    </div>
 
-    <!-- Project grid -->
-    <div class="project-grid">
+      <!-- Side stat cards span 4 cols -->
+      <div class="bento-side reveal">
+        <div class="bst-card">
+          <span class="bst-num">1.000</span>
+          <span class="bst-label">Image AUROC</span>
+          <span class="bst-desc">PatchCore on MVTec AD Bottle — perfect anomaly detection score</span>
+        </div>
+        <div class="bst-card">
+          <span class="bst-num">+9.12%</span>
+          <span class="bst-label">ImageNet-V2 Gain</span>
+          <span class="bst-desc">CR-MEMO vs MEMO baseline under distribution shift</span>
+        </div>
+      </div>
 
-      <div class="project-card reveal">
-        <div class="card-header cv"></div>
-        <div class="card-body">
-          <div class="project-badge">Independent Research · 2026</div>
-          <h3>CR-MEMO: Consistency-Regularised Test-Time Adaptation</h3>
-          <p>Extended MEMO (NeurIPS 2022) with a KL-divergence consistency term penalising disagreement across augmented test views. Achieved +9.12% accuracy on ImageNet-V2. Full ablation study included. Open-source modular implementation.</p>
+      <!-- Row 2 -->
+      <div class="bento-card reveal">
+        <div class="bc-bar blue"></div>
+        <div class="bc-body">
+          <div class="bc-badge">Independent · Jun 2026</div>
+          <div class="bc-title">Visual Anomaly Detection on MVTec AD</div>
+          <p class="bc-desc">Unsupervised defect localisation with ResNet-18 patch embeddings and nearest-neighbour memory bank. No labels, no fine-tuning. Per-pixel anomaly heatmaps. Follows PatchCore (CVPR 2022).</p>
           <div class="tag-row">
-            <span class="tag">PyTorch</span><span class="tag">Test-Time Adaptation</span>
-            <span class="tag">Distribution Shift</span><span class="tag green">+9.12% ImageNet-V2</span>
+            <span class="tag blue">PyTorch</span><span class="tag blue">ResNet-18</span>
+            <span class="tag green">AUROC 1.000</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay/CR-MEMO-Consistency-Regularized-Marginal-Entropy-Minimization" target="_blank">
+          <a class="bc-link" href="https://github.com/meridtesfay/visual-anomaly-detection" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="card-header ml"></div>
-        <div class="card-body">
-          <div class="project-badge">Independent Research · Jun 2026</div>
-          <h3>Visual Anomaly Detection on MVTec AD</h3>
-          <p>Unsupervised defect localisation using pretrained ResNet-18 patch embeddings and a nearest-neighbour memory bank. No anomaly labels required, no fine-tuning. Per-pixel heatmaps localise defect regions directly. Follows PatchCore (CVPR 2022).</p>
+      <div class="bento-card em reveal">
+        <div class="bc-bar emerald"></div>
+        <div class="bc-body">
+          <div class="bc-badge">Independent · Jun 2026</div>
+          <div class="bc-title">Financial Trade Anomaly Detection</div>
+          <p class="bc-desc">Two-stage pipeline for 0.17% fraud rate. Isolation Forest + XGBoost + SMOTE ensemble. 0.952 precision, PR-AUC 0.876. SHAP explainability for auditability.</p>
           <div class="tag-row">
-            <span class="tag">PyTorch</span><span class="tag">ResNet-18</span>
-            <span class="tag">Unsupervised</span><span class="tag">MVTec AD</span>
-            <span class="tag green">Image AUROC 1.000</span><span class="tag green">Pixel AUROC 0.982</span>
+            <span class="tag blue">XGBoost</span><span class="tag violet">SHAP</span>
+            <span class="tag green">PR-AUC 0.876</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay/visual-anomaly-detection" target="_blank">
+          <a class="bc-link" href="https://github.com/meridtesfay/financial-trade-anomaly-detection" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="card-header ml"></div>
-        <div class="card-body">
-          <div class="project-badge">Independent Research · Jun 2026</div>
-          <h3>Financial Trade Anomaly Detection</h3>
-          <p>Two-stage pipeline for detecting fraudulent transactions at 0.17% fraud rate. Stage 1: Isolation Forest (unsupervised prior). Stage 2: XGBoost with SMOTE. Ensemble flags only when both agree, achieving 0.952 precision to minimise false positives. SHAP explainability included.</p>
+      <div class="bento-card vi reveal">
+        <div class="bc-bar violet"></div>
+        <div class="bc-body">
+          <div class="bc-badge">Independent · 2026</div>
+          <div class="bc-title">CR-MEMO: Test-Time Adaptation</div>
+          <p class="bc-desc">Extended MEMO (NeurIPS 2022) with KL-divergence consistency term across augmented test views. +9.12% on ImageNet-V2. Full ablation study, modular open-source implementation.</p>
           <div class="tag-row">
-            <span class="tag">XGBoost</span><span class="tag">Isolation Forest</span>
-            <span class="tag">SHAP</span><span class="tag">Scikit-learn</span>
-            <span class="tag green">PR-AUC 0.876</span><span class="tag green">Precision 0.952</span>
+            <span class="tag violet">PyTorch</span><span class="tag violet">TTA</span>
+            <span class="tag green">+9.12% ImNet-V2</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay/financial-trade-anomaly-detection" target="_blank">
+          <a class="bc-link" href="https://github.com/meridtesfay/CR-MEMO-Consistency-Regularized-Marginal-Entropy-Minimization" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="card-header geo"></div>
-        <div class="card-body">
-          <div class="project-badge">Independent Research · 2026</div>
-          <h3>Maritime Satellite IoT Link Quality Prediction</h3>
-          <p>Multimodal time-series prediction of satellite link quality (Good / Degraded / Outage) under 3% minority-class imbalance. Fused AIS vessel telemetry, ERA5 weather reanalysis grids, and satellite geometry via multi-head attention. Benchmarked 4 architectures.</p>
+      <!-- Row 3 -->
+      <div class="bento-card em reveal">
+        <div class="bc-bar emerald"></div>
+        <div class="bc-body">
+          <div class="bc-badge">Independent · 2026</div>
+          <div class="bc-title">Maritime Satellite IoT Link Quality</div>
+          <p class="bc-desc">Multimodal time-series prediction of satellite link quality under 3% minority-class imbalance. AIS telemetry + ERA5 weather + satellite geometry via multi-head attention. 4 architectures benchmarked.</p>
           <div class="tag-row">
-            <span class="tag">Transformer</span><span class="tag">BiLSTM</span>
-            <span class="tag">ERA5</span><span class="tag">Multimodal Fusion</span><span class="tag">AIS</span>
+            <span class="tag blue">Transformer</span><span class="tag blue">BiLSTM</span>
+            <span class="tag green">ERA5 / AIS</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay/maritime-sat-iot" target="_blank">
+          <a class="bc-link" href="https://github.com/meridtesfay/maritime-sat-iot" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="card-header geo"></div>
-        <div class="card-body">
-          <div class="project-badge">Independent Research · 2026</div>
-          <h3>Wetland Greenhouse Gas Flux Modeling with SSL</h3>
-          <p>Applied Barlow Twins and SimCLR to Sentinel-2 multispectral imagery (13 bands) fused with Sentinel-1 SAR and ERA5 meteorological time-series for CO₂/CH₄ flux prediction in Arctic wetlands under sparse labels.</p>
+      <div class="bento-card reveal">
+        <div class="bc-bar blue"></div>
+        <div class="bc-body">
+          <div class="bc-badge">Independent · 2026</div>
+          <div class="bc-title">Wetland GHG Flux Modeling (SSL)</div>
+          <p class="bc-desc">Barlow Twins + SimCLR on Sentinel-2 (13 bands) fused with Sentinel-1 SAR and ERA5 time-series for CO₂/CH₄ flux prediction in Arctic wetlands under sparse labels.</p>
           <div class="tag-row">
             <span class="tag green">Sentinel-2</span><span class="tag green">SAR</span>
-            <span class="tag">Barlow Twins</span><span class="tag">SimCLR</span><span class="tag">rasterio</span>
+            <span class="tag violet">Barlow Twins</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay/wetland-flux-modeling" target="_blank">
+          <a class="bc-link" href="https://github.com/meridtesfay/wetland-flux-modeling" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
 
-      <div class="project-card reveal">
-        <div class="card-header cv"></div>
-        <div class="card-body">
-          <div class="project-badge">ML Course · 2025</div>
-          <h3>AI4Food: Supervised Classification for Food Quality</h3>
-          <p>Compared 5 classifiers (KNN, SVM, Random Forest, XGBoost, Neural Network) on 1.47M data points of high-dimensional time-series sensor data. 92% accuracy via ensemble methods. Systematic feature engineering, PCA/t-SNE, hyperparameter optimisation.</p>
+      <div class="bento-card vi reveal">
+        <div class="bc-bar pink"></div>
+        <div class="bc-body">
+          <div class="bc-badge">ML Course · 2025</div>
+          <div class="bc-title">AI4Food: Supervised Classification</div>
+          <p class="bc-desc">5 classifiers on 1.47M data points of high-dimensional time-series sensor data. 92% accuracy via ensemble methods. Feature engineering, PCA/t-SNE, hyperparameter optimisation.</p>
           <div class="tag-row">
-            <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span>
-            <span class="tag">Time-Series</span><span class="tag">PCA</span>
+            <span class="tag blue">Scikit-learn</span><span class="tag blue">XGBoost</span>
+            <span class="tag violet">PCA / t-SNE</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay" target="_blank">
+          <a class="bc-link" href="https://github.com/meridtesfay" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
         </div>
       </div>
-
-      <div class="project-card reveal">
-        <div class="card-header eng"></div>
-        <div class="card-body">
-          <div class="project-badge">Multisensory Systems · 2024–2025</div>
-          <h3>Arduino Sign Language Recognition</h3>
-          <p>Real-time ASL gesture recognition using Arduino with 5 flex sensors. C/C++ firmware for sensor acquisition and calibration. Processing (UI) and Pure Data (audio) integration. Validated across multiple users.</p>
-          <div class="tag-row">
-            <span class="tag">Arduino</span><span class="tag">C/C++</span>
-            <span class="tag">Embedded Systems</span><span class="tag">Sensors</span>
-          </div>
-          <a class="card-link" href="https://github.com/xalessiabertanax/MultisensoryProject" target="_blank">
-            View on GitHub
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card reveal">
-        <div class="card-header eng"></div>
-        <div class="card-body">
-          <div class="project-badge">Multimedia Security · 2024–2025</div>
-          <h3>Robust Digital Watermarking via DWT-DCT</h3>
-          <p>Frequency-domain watermarking robust to JPEG compression, Gaussian noise, median filtering, and geometric transforms. Comparative PSNR/SSIM analysis. Reinforces signal processing foundations applicable to image preprocessing pipelines.</p>
-          <div class="tag-row">
-            <span class="tag">Python</span><span class="tag">OpenCV</span>
-            <span class="tag">NumPy</span><span class="tag">Signal Processing</span>
-          </div>
-          <a class="card-link" href="https://github.com/Elia-Tomaselli/mds" target="_blank">
-            View on GitHub
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<hr class="divider">
+<hr class="div" style="max-width:1200px;margin:0 auto;">
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-inner">
-    <div class="sec-label reveal">Capabilities</div>
-    <div class="sec-title reveal">Technical Skills</div>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Self-Supervised Learning</div>
-        <div class="skill-list">
-          <span class="skill-pill">SimCLR</span><span class="skill-pill">BYOL</span>
-          <span class="skill-pill">Barlow Twins</span><span class="skill-pill">MoCo</span>
-          <span class="skill-pill">MAE</span><span class="skill-pill">SwinUNETR</span>
-          <span class="skill-pill">Contrastive Learning</span>
+  <div class="page">
+    <span class="label reveal">Capabilities</span>
+    <div class="section-title reveal">Technical Skills</div>
+    <div class="skills-container">
+
+      <div class="reveal">
+        <div class="skill-group-title">Self-Supervised Learning</div>
+        <div class="skill-cloud">
+          <span class="spill v">SimCLR</span><span class="spill v">BYOL</span>
+          <span class="spill v">Barlow Twins</span><span class="spill v">MoCo</span>
+          <span class="spill v">MAE</span><span class="spill v">SwinUNETR</span>
+          <span class="spill v">Contrastive Learning</span>
         </div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Deep Learning Frameworks</div>
-        <div class="skill-list">
-          <span class="skill-pill">PyTorch (Expert)</span><span class="skill-pill">MONAI</span>
-          <span class="skill-pill">TensorFlow</span><span class="skill-pill">Scikit-learn</span>
-          <span class="skill-pill">HuggingFace</span><span class="skill-pill">W&B</span>
+
+      <div class="reveal">
+        <div class="skill-group-title">Deep Learning & Frameworks</div>
+        <div class="skill-cloud">
+          <span class="spill b">PyTorch (Expert)</span><span class="spill b">MONAI</span>
+          <span class="spill b">TensorFlow</span><span class="spill b">Scikit-learn</span>
+          <span class="spill b">HuggingFace</span><span class="spill b">W&amp;B</span>
+          <span class="spill b">MLflow</span>
         </div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Computer Vision</div>
-        <div class="skill-list">
-          <span class="skill-pill">Vision Transformers</span><span class="skill-pill">ViT</span>
-          <span class="skill-pill">SwinUNETR</span><span class="skill-pill">U-Net</span>
-          <span class="skill-pill">ResNet</span><span class="skill-pill">Anomaly Detection</span>
-          <span class="skill-pill">Grad-CAM</span><span class="skill-pill">SHAP</span>
+
+      <div class="reveal">
+        <div class="skill-group-title">Computer Vision & Medical Imaging</div>
+        <div class="skill-cloud">
+          <span class="spill g">Vision Transformers</span><span class="spill g">ViT</span>
+          <span class="spill g">U-Net</span><span class="spill g">Anomaly Detection</span>
+          <span class="spill g">Grad-CAM</span><span class="spill g">SHAP</span>
+          <span class="spill g">CT Preprocessing</span><span class="spill g">DICOM</span>
+          <span class="spill g">NIfTI</span><span class="spill g">MIL</span>
         </div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Medical Imaging</div>
-        <div class="skill-list">
-          <span class="skill-pill">CT Preprocessing</span><span class="skill-pill">DICOM</span>
-          <span class="skill-pill">HU Windowing</span><span class="skill-pill">NIfTI</span>
-          <span class="skill-pill">Volumetric Resampling</span><span class="skill-pill">MIL</span>
+
+      <div class="reveal">
+        <div class="skill-group-title">Geospatial & Remote Sensing</div>
+        <div class="skill-cloud">
+          <span class="spill g">Sentinel-2</span><span class="spill g">Sentinel-1 SAR</span>
+          <span class="spill g">ERA5 Reanalysis</span><span class="spill g">rasterio</span>
+          <span class="spill g">xarray</span><span class="spill g">Sentinelhub API</span>
         </div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Geospatial & Remote Sensing</div>
-        <div class="skill-list">
-          <span class="skill-pill">Sentinel-2</span><span class="skill-pill">Sentinel-1 SAR</span>
-          <span class="skill-pill">ERA5 Reanalysis</span><span class="skill-pill">rasterio</span>
-          <span class="skill-pill">xarray</span><span class="skill-pill">Sentinelhub API</span>
+
+      <div class="reveal">
+        <div class="skill-group-title">Infrastructure & Programming</div>
+        <div class="skill-cloud">
+          <span class="spill b">Python (Expert)</span><span class="spill b">NumPy</span>
+          <span class="spill b">Pandas</span><span class="spill b">SciPy</span>
+          <span class="spill b">HPC / SLURM</span><span class="spill b">Docker</span>
+          <span class="spill b">Git</span><span class="spill b">MATLAB</span>
+          <span class="spill b">C/C++</span><span class="spill b">LaTeX</span>
         </div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Infrastructure & MLOps</div>
-        <div class="skill-list">
-          <span class="skill-pill">HPC/SLURM</span><span class="skill-pill">4x A100 GPU</span>
-          <span class="skill-pill">Docker</span><span class="skill-pill">Git</span>
-          <span class="skill-pill">MLflow</span><span class="skill-pill">LaTeX</span>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div" style="max-width:1200px;margin:0 auto;">
+
+<!-- BACKGROUND -->
+<section id="background">
+  <div class="page">
+    <span class="label reveal">Background</span>
+    <div class="section-title reveal">Education & Experience</div>
+
+    <div class="exp-layout">
+      <div>
+        <span class="label" style="font-size:10px;margin-bottom:1.4rem">Education</span>
+        <div class="edu-stack">
+          <div class="edu-card reveal">
+            <div class="edu-year">2022 – 2026</div>
+            <div class="edu-deg">MSc Computer Engineering</div>
+            <div class="edu-uni">University of Trento, Italy</div>
+            <div class="edu-detail">AI/ML track. Thesis: Multi-label brain CT pathology classification via self-supervised learning. Supervisors: Prof. Farid Melgani, Dr. Selene Tomassini. Clinical collaboration with ASUIT Trento Hospital Radiology Dept.</div>
+          </div>
+          <div class="edu-card reveal">
+            <div class="edu-year">2012 – 2017</div>
+            <div class="edu-deg">BSc Electronics & Communication Engineering</div>
+            <div class="edu-uni">Mekelle University, Ethiopia</div>
+            <div class="edu-detail">Digital Signal Processing, Communication Systems, Fourier/Wavelet Analysis, Probability & Statistics, Embedded Systems, Microprocessor Architecture.</div>
+          </div>
         </div>
       </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Programming</div>
-        <div class="skill-list">
-          <span class="skill-pill">Python (Expert)</span><span class="skill-pill">NumPy</span>
-          <span class="skill-pill">Pandas</span><span class="skill-pill">SciPy</span>
-          <span class="skill-pill">MATLAB</span><span class="skill-pill">C/C++</span>
-          <span class="skill-pill">JavaScript</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Network Engineering</div>
-        <div class="skill-list">
-          <span class="skill-pill">Cisco Routing/Switching</span>
-          <span class="skill-pill">LAN/WAN Design</span>
-          <span class="skill-pill">Firewall Config</span>
-          <span class="skill-pill">FortiSIEM</span>
-          <span class="skill-pill">IBM QRadar</span>
+
+      <div>
+        <span class="label" style="font-size:10px;margin-bottom:1.4rem">Experience</span>
+        <div class="timeline">
+          <div class="tl-item reveal">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-date">2021 – 2023</div>
+              <div class="tl-org">INSA, Ethiopia</div>
+              <div class="tl-role">Network & Telecom Field Engineer</div>
+              <p class="tl-desc">Prepared HLD/LLD and technical specifications for enterprise network infrastructure. Supervised vendor implementation with milestone reviews, PAT and FAT procedures for mission-critical systems.</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-date">2020 – 2021</div>
+              <div class="tl-org">INSA, Ethiopia</div>
+              <div class="tl-role">Network & Telecom Field Engineer</div>
+              <p class="tl-desc">Designed and installed structured cabling (Cat6, fibre optics). Implemented LAN/WAN for banking operations. Developed comprehensive project plans for hardware and software installations.</p>
+            </div>
+          </div>
+          <div class="tl-item reveal">
+            <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+            <div>
+              <div class="tl-date">2019 – 2020</div>
+              <div class="tl-org">INSA, Ethiopia</div>
+              <div class="tl-role">Network & Telecom Field Engineer</div>
+              <p class="tl-desc">Configured routing/switching, IP voice services, and enterprise firewalls. Designed resilient network solutions for mission-critical financial infrastructure.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<hr class="divider">
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-inner">
-    <div class="sec-label reveal">Background</div>
-    <div class="sec-title reveal">Education & Experience</div>
-
-    <div class="edu-grid">
-      <div class="edu-card reveal">
-        <div class="edu-year">2022 – 2026</div>
-        <div class="edu-degree">MSc Computer Engineering</div>
-        <div class="edu-uni">University of Trento, Italy</div>
-        <div class="edu-detail">AI/ML track. Thesis: Multi-label brain CT pathology classification via self-supervised learning. Supervisors: Prof. Farid Melgani, Dr. Selene Tomassini. Clinical collaboration: ASUIT Trento Hospital Radiology Dept.</div>
-      </div>
-      <div class="edu-card reveal">
-        <div class="edu-year">2012 – 2017</div>
-        <div class="edu-degree">BSc Electronics & Communication Engineering</div>
-        <div class="edu-uni">Mekelle University, Ethiopia</div>
-        <div class="edu-detail">Digital Signal Processing, Communication Systems, Fourier/Wavelet Analysis, Probability & Statistics, Embedded Systems, MATLAB, Microprocessor Architecture.</div>
-      </div>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2021 – 2023</div>
-        <div class="timeline-org">INSA, Ethiopia</div>
-        <div class="timeline-role">Network & Telecom Field Engineer, Federal Civil Service Commission</div>
-        <div class="timeline-desc">Prepared HLD and technical specifications for enterprise network infrastructure. Supervised vendor implementation with milestone reviews and quality assurance. Developed and executed PAT and FAT procedures for mission-critical systems.</div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2020 – 2021</div>
-        <div class="timeline-org">INSA, Ethiopia</div>
-        <div class="timeline-role">Network & Telecom Field Engineer, Amhara Credit and Saving Institution</div>
-        <div class="timeline-desc">Designed and installed structured cabling systems (Cat6, fibre optics). Implemented LAN/WAN for banking operations. Developed comprehensive project plans for hardware and software installations.</div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2019 – 2020</div>
-        <div class="timeline-org">INSA, Ethiopia</div>
-        <div class="timeline-role">Network & Telecom Field Engineer, National Bank of Ethiopia</div>
-        <div class="timeline-desc">Configured routing/switching equipment, IP voice services, and enterprise firewalls. Established secure networking environments with comprehensive documentation. Designed resilient network solutions for mission-critical financial infrastructure.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
+<hr class="div" style="max-width:1200px;margin:0 auto;">
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-inner">
-    <div class="sec-label reveal">Reach out</div>
-    <div class="sec-title reveal">Get in Touch</div>
-    <div class="contact-wrap reveal">
-      <p class="contact-sub">Open to PhD positions in medical AI, ML, and geospatial AI, and industry roles in AI engineering and data science. Available from July 2026.</p>
-      <div class="contact-row">
-        <a class="contact-link" href="mailto:meridtesfay@gmail.com">
-          <span class="contact-icon">✉</span> meridtesfay@gmail.com
-        </a>
-        <a class="contact-link" href="https://github.com/meridtesfay" target="_blank">
-          <span class="contact-icon">⌥</span> GitHub
-        </a>
-        <a class="contact-link" href="https://www.linkedin.com/in/merid-tesfay-9634a9103" target="_blank">
-          <span class="contact-icon">in</span> LinkedIn
-        </a>
-        <a class="contact-link" href="tel:+393884670285">
-          <span class="contact-icon">☎</span> +39 388 4670285
-        </a>
+  <div class="page">
+    <div class="contact-inner">
+      <span class="label reveal">Reach out</span>
+      <div class="contact-heading reveal">Let's build<br><span>something great.</span></div>
+      <p class="contact-sub reveal">Open to PhD positions in medical AI, ML, and geospatial AI, and industry roles in AI engineering and data science. Available from July 2026.</p>
+      <div class="contact-row reveal">
+        <a class="clink" href="mailto:meridtesfay@gmail.com"><span class="clink-icon">✉</span> meridtesfay@gmail.com</a>
+        <a class="clink" href="https://github.com/meridtesfay" target="_blank"><span class="clink-icon">⌥</span> GitHub</a>
+        <a class="clink" href="https://www.linkedin.com/in/merid-tesfay-9634a9103" target="_blank"><span class="clink-icon">in</span> LinkedIn</a>
+        <a class="clink" href="tel:+393884670285"><span class="clink-icon">☎</span> +39 388 4670285</a>
       </div>
-      <div class="contact-interests reveal">
-        <p class="interests-label">Research interests</p>
-        <div class="interests-tags">
-          <span class="tag">Computer Vision</span>
-          <span class="tag">Medical Image Analysis</span>
-          <span class="tag">Self-supervised Learning</span>
-          <span class="tag">Anomaly Detection</span>
-          <span class="tag">Geospatial AI</span>
-          <span class="tag">Multimodal Learning</span>
-        </div>
+      <div class="interest-row reveal">
+        <span class="tag blue">Computer Vision</span>
+        <span class="tag blue">Medical Image Analysis</span>
+        <span class="tag violet">Self-supervised Learning</span>
+        <span class="tag green">Anomaly Detection</span>
+        <span class="tag green">Geospatial AI</span>
+        <span class="tag violet">Multimodal Learning</span>
       </div>
     </div>
   </div>
 </section>
 
-<div class="footer">© 2026 MERID TESFAY</div>
+<footer>© 2026 MERID TESFAY</footer>
 
 <script>
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
+  const revealObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }, { threshold: 0.1 });
 
-  // Stagger children inside grids
-  document.querySelectorAll('.project-grid, .skills-grid').forEach(grid => {
-    [...grid.querySelectorAll('.reveal')].forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.07) + 's';
-    });
+  document.querySelectorAll('.reveal').forEach((el, _, all) => {
+    const parentGrid = el.closest('.bento, .skills-container');
+    if (parentGrid) {
+      const siblings = [...parentGrid.querySelectorAll(':scope > .reveal')];
+      const idx = siblings.indexOf(el);
+      if (idx >= 0) el.style.transitionDelay = (idx * 0.07) + 's';
+    }
+    revealObs.observe(el);
   });
 
-  // Counter animation
-  const counters = document.querySelectorAll('.stat-num[data-target]');
-  const countObserver = new IntersectionObserver((entries) => {
+  const cntObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const el = e.target;
-      const target = +el.dataset.target;
-      const suffix = el.dataset.suffix || '';
-      let start = 0;
-      const duration = 1400;
-      const step = timestamp => {
-        if (!start) start = timestamp;
-        const progress = Math.min((timestamp - start) / duration, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.floor(ease * target) + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = target + suffix;
+      const el = e.target, target = +el.dataset.target;
+      let t0 = null;
+      const step = ts => {
+        if (!t0) t0 = ts;
+        const p = Math.min((ts - t0) / 1400, 1);
+        el.textContent = Math.floor((1 - Math.pow(1 - p, 3)) * target);
+        p < 1 ? requestAnimationFrame(step) : (el.textContent = target);
       };
       requestAnimationFrame(step);
-      countObserver.unobserve(el);
+      cntObs.unobserve(el);
     });
   }, { threshold: 0.5 });
-  counters.forEach(el => countObserver.observe(el));
+  document.querySelectorAll('.hstat-num[data-target]').forEach(el => cntObs.observe(el));
 
-  // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navAs = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--text)' : '';
-    });
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--text)' : ''; });
   }, { passive: true });
 </script>
 
