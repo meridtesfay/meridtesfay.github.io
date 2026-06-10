@@ -48,6 +48,18 @@
       z-index:0;
     }
 
+    /* SOFT TEAL HERO GLOW */
+    body::after{
+      content:'';
+      position:fixed;
+      top:-10%;left:50%;
+      transform:translateX(-50%);
+      width:900px;height:900px;
+      background:radial-gradient(circle, rgba(0,201,167,0.06) 0%, transparent 60%);
+      pointer-events:none;
+      z-index:0;
+    }
+
     /* NAV */
     nav{
       position:sticky;top:0;z-index:100;
@@ -114,33 +126,42 @@
 
     /* HERO */
     .hero{
-      min-height:92vh;display:flex;align-items:center;
-      max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem;
-      gap:4rem;position:relative;z-index:1;
+      min-height:92vh;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;text-align:center;
+      max-width:760px;margin:0 auto;padding:6rem 2rem 4rem;
+      position:relative;z-index:1;
     }
-    .hero-left{flex:1;min-width:0}
     .hero-tag{
       font-family:var(--mono);font-size:11px;color:var(--accent);
       letter-spacing:0.18em;text-transform:uppercase;
-      margin-bottom:1.4rem;
+      margin-bottom:1.6rem;
       display:flex;align-items:center;gap:10px;
     }
     .hero-tag::before{content:'';width:28px;height:1px;background:var(--accent)}
+    .hero-tag::after{content:'';width:28px;height:1px;background:var(--accent)}
     .hero h1{
       font-family:var(--serif);
       font-size:clamp(3rem,6vw,5.2rem);
-      line-height:1.08;margin-bottom:1.6rem;color:#fff;
+      line-height:1.08;margin-bottom:1rem;color:#fff;
     }
-    .hero h1 em{color:var(--accent);font-style:italic}
+    .hero-role{
+      font-size:1.15rem;color:var(--text);
+      font-weight:400;margin-bottom:1.6rem;
+    }
     .hero-sub{
-      font-size:1rem;color:var(--muted);
-      max-width:520px;margin-bottom:2.8rem;
-      font-weight:300;line-height:1.75;
+      font-size:1.02rem;color:var(--muted);
+      max-width:600px;margin:0 auto 1.6rem;
+      font-weight:300;line-height:1.8;
+    }
+    .hero-focus{
+      font-family:var(--mono);font-size:12px;color:var(--muted);
+      letter-spacing:0.04em;margin-bottom:2.8rem;
     }
     .hero-stats{
-      display:flex;gap:3rem;margin-bottom:3rem;flex-wrap:wrap;
+      display:flex;gap:3rem;margin-bottom:2.8rem;flex-wrap:wrap;
+      justify-content:center;
     }
-    .stat-item{text-align:left}
+    .stat-item{text-align:center}
     .stat-num{
       font-family:var(--mono);font-size:2.2rem;font-weight:500;
       color:var(--accent);display:block;line-height:1;
@@ -149,7 +170,7 @@
       font-size:11px;color:var(--muted);
       letter-spacing:0.08em;text-transform:uppercase;margin-top:5px;
     }
-    .hero-btns{display:flex;gap:0.9rem;flex-wrap:wrap}
+    .hero-btns{display:flex;gap:0.9rem;flex-wrap:wrap;justify-content:center}
     .btn-primary{
       background:var(--accent);color:var(--navy);
       padding:0.75rem 1.8rem;border-radius:5px;
@@ -164,39 +185,6 @@
       transition:all 0.2s;
     }
     .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
-
-    /* HERO TERMINAL CARD */
-    .hero-right{
-      flex:0 0 340px;
-      display:flex;align-items:center;justify-content:center;
-    }
-    .terminal{
-      background:var(--card);border:1px solid var(--border);
-      border-radius:10px;width:100%;overflow:hidden;
-      box-shadow:0 24px 64px rgba(0,0,0,0.4);
-    }
-    .terminal-bar{
-      background:var(--card2);border-bottom:1px solid var(--border);
-      padding:10px 14px;display:flex;align-items:center;gap:7px;
-    }
-    .t-dot{width:11px;height:11px;border-radius:50%}
-    .t-dot.r{background:#FF5F57}.t-dot.y{background:#FEBC2E}.t-dot.g{background:#28C840}
-    .terminal-title{
-      font-family:var(--mono);font-size:11px;color:var(--muted);
-      margin-left:auto;margin-right:auto;letter-spacing:0.06em;
-    }
-    .terminal-body{padding:1.4rem 1.6rem;font-family:var(--mono);font-size:12.5px;line-height:2}
-    .t-line{display:flex;gap:8px;align-items:baseline}
-    .t-prompt{color:var(--accent);user-select:none}
-    .t-cmd{color:var(--blue-l)}
-    .t-out{color:var(--muted);padding-left:16px;display:flex;justify-content:space-between}
-    .t-val{color:#fff;font-weight:500}
-    .t-cursor{
-      display:inline-block;width:8px;height:14px;
-      background:var(--accent);margin-left:2px;
-      animation:blink 1s step-end infinite;vertical-align:middle;
-    }
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
     /* SCROLL ANIMATIONS */
     .reveal{
@@ -384,8 +372,7 @@
 
     /* RESPONSIVE */
     @media(max-width:900px){
-      .hero{flex-direction:column;min-height:auto;padding-top:4rem;gap:3rem}
-      .hero-right{flex:none;width:100%;max-width:400px;margin:0 auto}
+      .hero{min-height:auto;padding-top:4rem}
       .featured-inner{grid-template-columns:1fr}
       .edu-grid{grid-template-columns:1fr}
     }
@@ -417,52 +404,29 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">ML Researcher</div>
-    <h1>Merid Tesfay<br><em>Machine Learning</em><br>Researcher</h1>
-    <p class="hero-sub">MSc Computer Engineering (AI/ML), University of Trento. Specialising in self-supervised learning, medical image analysis, and contrastive representation learning.</p>
-    <div class="hero-stats">
-      <div class="stat-item">
-        <span class="stat-num" data-target="155">0</span>
-        <span class="stat-label">ML experiments</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" data-target="500">0</span>
-        <span class="stat-label">Patient dataset</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num" data-target="9">0</span>
-        <span class="stat-label">Research projects</span>
-      </div>
+  <div class="hero-tag">ML Researcher</div>
+  <h1>Merid Tesfay</h1>
+  <p class="hero-role">Machine learning researcher in medical image analysis</p>
+  <p class="hero-sub">I am an MSc Computer Engineering student on the AI/ML track at the University of Trento. My thesis builds self-supervised models that classify brain pathology in CT scans, trained on 500 clinical volumes across 155 controlled experiments. I work closely with a hospital radiology department to keep the research grounded in real clinical needs.</p>
+  <p class="hero-focus">Self-supervised learning · Medical image analysis · Computer vision</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num" data-target="155">0</span>
+      <span class="stat-label">ML experiments</span>
     </div>
-    <div class="hero-btns">
-      <a class="btn-primary" href="#contact">Get in touch</a>
-      <a class="btn-outline" href="https://github.com/meridtesfay" target="_blank">GitHub</a>
-      <a class="btn-outline" href="#projects">View work</a>
+    <div class="stat-item">
+      <span class="stat-num" data-target="500">0</span>
+      <span class="stat-label">Patient dataset</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num" data-target="9">0</span>
+      <span class="stat-label">Research projects</span>
     </div>
   </div>
-
-  <div class="hero-right">
-    <div class="terminal">
-      <div class="terminal-bar">
-        <div class="t-dot r"></div>
-        <div class="t-dot y"></div>
-        <div class="t-dot g"></div>
-        <span class="terminal-title">research_output.py</span>
-      </div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">python evaluate.py</span></div>
-        <div class="t-out"><span>Image AUROC</span><span class="t-val">1.000</span></div>
-        <div class="t-out"><span>Pixel AUROC</span><span class="t-val">0.982</span></div>
-        <div class="t-line" style="margin-top:6px"><span class="t-prompt">$</span><span class="t-cmd">python test_tta.py</span></div>
-        <div class="t-out"><span>ImageNet-V2</span><span class="t-val">+9.12%</span></div>
-        <div class="t-out"><span>Distribution shift</span><span class="t-val">robust</span></div>
-        <div class="t-line" style="margin-top:6px"><span class="t-prompt">$</span><span class="t-cmd">python score.py</span></div>
-        <div class="t-out"><span>PR-AUC</span><span class="t-val">0.876</span></div>
-        <div class="t-out"><span>Precision</span><span class="t-val">0.952</span></div>
-        <div class="t-line" style="margin-top:6px"><span class="t-prompt">$</span><span class="t-cmd"><span class="t-cursor"></span></span></div>
-      </div>
-    </div>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#contact">Get in touch</a>
+    <a class="btn-outline" href="https://github.com/meridtesfay" target="_blank">GitHub</a>
+    <a class="btn-outline" href="#projects">View work</a>
   </div>
 </div>
 
