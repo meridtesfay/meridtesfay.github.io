@@ -95,8 +95,8 @@
     }
     .hero-inner {
       max-width: 1280px; margin: 0 auto; padding: 0 2.5rem;
-      display: grid; grid-template-columns: 1fr 200px;
-      gap: 5rem; align-items: end; width: 100%;
+      display: grid; grid-template-columns: 1fr 260px 160px;
+      gap: 4rem; align-items: end; width: 100%;
     }
     .hero-eyebrow {
       font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
@@ -143,6 +143,25 @@
       letter-spacing: 0.12em; text-transform: uppercase;
     }
     .hstat-sep { width: 28px; height: 1px; background: var(--border2); margin-top: 2.2rem; }
+
+    /* HERO PHOTO */
+    .hero-photo-wrap {
+      position: relative; overflow: hidden;
+      width: 260px; height: 320px;
+      border: 1px solid var(--border);
+      align-self: center; flex-shrink: 0;
+    }
+    .hero-photo-wrap::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--lime);
+    }
+    .hero-photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 50% 8%;
+      display: block;
+    }
 
     /* SCROLL REVEAL */
     .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -340,8 +359,9 @@
 
     /* RESPONSIVE */
     @media (max-width: 1024px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-stats { flex-direction: row; gap: 3rem; }
+      .hero-inner { grid-template-columns: 1fr 1fr; gap: 3rem; }
+      .hero-photo-wrap { width: 100%; height: 280px; grid-column: 1 / -1; order: -1; }
+      .hero-stats { flex-direction: row; gap: 3rem; grid-column: 1 / -1; }
       .hstat-sep { display: none; }
       .feat-inner { grid-template-columns: 1fr; }
       .bento-featured { grid-column: span 12; }
@@ -351,6 +371,8 @@
     }
     @media (max-width: 640px) {
       .hero h1 { font-size: 4rem; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { width: 100%; height: 260px; grid-column: 1; order: -1; }
       section { padding: 5.5rem 0; }
       .bento-card { grid-column: span 12; }
       .bento-side { grid-template-columns: 1fr; }
@@ -396,6 +418,9 @@
         <a class="btn-ghost" href="https://github.com/meridtesfay" target="_blank">GitHub</a>
         <a class="btn-ghost" href="#projects">View work</a>
       </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="graduation.jpeg" alt="Merid Tesfay">
     </div>
     <div class="hero-stats">
       <div>
