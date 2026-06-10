@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Merid Tesfay — ML Researcher</title>
+  <meta name="description" content="Merid Tesfay — ML researcher in medical image analysis and computer vision. MSc Computer Engineering (AI/ML), University of Trento.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -17,7 +18,7 @@
       --border: rgba(255,255,255,0.08);
       --border2: rgba(255,255,255,0.15);
       --text: #eeeeff;
-      --muted: rgba(200,200,240,0.48);
+      --muted: rgba(200,200,240,0.55);
       --v1: #8B5CF6;
       --v2: #A78BFA;
       --g1: #34D399;
@@ -141,14 +142,14 @@
       background: linear-gradient(135deg, var(--v1), #6D28D9);
       color: #fff; padding: 0.72rem 1.8rem; border-radius: 100px;
       text-decoration: none; font-weight: 700; font-size: 13.5px;
-      transition: all 0.25s; box-shadow: 0 0 28px rgba(139,92,246,0.32);
+      transition: transform 0.25s, box-shadow 0.25s; box-shadow: 0 0 28px rgba(139,92,246,0.32);
       letter-spacing: 0.01em;
     }
     .btn-violet:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(139,92,246,0.55); }
     .btn-ghost {
       background: transparent; border: 1px solid var(--border2);
       color: var(--text); padding: 0.72rem 1.8rem; border-radius: 100px;
-      text-decoration: none; font-size: 13.5px; transition: all 0.22s;
+      text-decoration: none; font-size: 13.5px; transition: border-color 0.2s, color 0.2s, transform 0.2s;
     }
     .btn-ghost:hover { border-color: rgba(167,139,250,0.5); color: var(--v2); transform: translateY(-2px); }
 
@@ -192,7 +193,7 @@
       flex: 1; background: var(--surface); border: 1px solid var(--border);
       border-radius: 22px; padding: 1.8rem 1.6rem;
       display: flex; flex-direction: column; justify-content: center;
-      transition: border-color 0.22s;
+      transition: border-color 0.2s;
     }
     .bst-card:hover { border-color: rgba(52,211,153,0.3); }
     .bst-num {
@@ -201,7 +202,7 @@
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
     .bst-label { font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
-    .bst-desc { font-size: 12.5px; color: rgba(200,200,240,0.38); margin-top: 7px; line-height: 1.55; }
+    .bst-desc { font-size: 12.5px; color: rgba(200,200,240,0.52); margin-top: 7px; line-height: 1.55; }
 
     .bento-card {
       grid-column: span 4; background: var(--surface); border: 1px solid var(--border);
@@ -274,7 +275,7 @@
     .spill {
       font-size: 13px; padding: 6px 14px; border-radius: 9px;
       border: 1px solid var(--border); background: var(--surface);
-      color: var(--muted); transition: all 0.22s; cursor: default;
+      color: var(--muted); transition: color 0.2s, border-color 0.2s, background-color 0.2s; cursor: default;
     }
     .spill:hover { color: var(--text); border-color: var(--border2); background: var(--surface2); }
     .spill.v:hover { border-color: rgba(139,92,246,0.42); color: var(--v2); }
@@ -328,7 +329,7 @@
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 11px; padding: 0.9rem 1.4rem;
       text-decoration: none; color: var(--text); font-size: 14px;
-      transition: all 0.22s;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
     }
     .clink:hover { border-color: rgba(139,92,246,0.42); color: var(--v2); transform: translateY(-2px); }
     .clink-icon { font-size: 14px; }
@@ -358,6 +359,26 @@
       .bento { gap: 0.75rem; }
       .nav-links { gap: 1.4rem; }
       .hero-stats { flex-direction: column; }
+    }
+
+    /* FOCUS STATES */
+    :focus-visible {
+      outline: 2px solid var(--v2);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .btn-violet:focus-visible, .btn-ghost:focus-visible {
+      outline-offset: 4px;
+    }
+
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      .aurora-blob { animation: none; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn-violet, .btn-ghost, .bento-featured, .bento-card, .bst-card,
+      .hstat, .edu-card, .clink, .spill, .bc-link svg {
+        transition: none;
+      }
     }
   </style>
 </head>
