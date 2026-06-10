@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merid Tesfay — ML Researcher</title>
+  <title>Merid Tesfay | ML Researcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -361,6 +361,9 @@
     .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
     .contact-icon{font-size:15px;color:var(--muted)}
     .contact-link:hover .contact-icon{color:var(--accent)}
+    .contact-interests{margin-top:2.4rem}
+    .interests-label{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.9rem}
+    .interests-tags{display:flex;gap:0.6rem;flex-wrap:wrap}
 
     /* FOOTER */
     .footer{
@@ -404,9 +407,9 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">ML Researcher</div>
+  <div class="hero-tag">ML Researcher · Computer Vision</div>
   <h1>Merid Tesfay</h1>
-  <p class="hero-role">Machine learning researcher in medical image analysis</p>
+  <p class="hero-role">Machine learning researcher in medical image analysis and computer vision</p>
   <p class="hero-sub">I am an MSc Computer Engineering student on the AI/ML track at the University of Trento. My thesis builds self-supervised models that classify brain pathology in CT scans, trained on 500 clinical volumes across 155 controlled experiments. I work closely with a hospital radiology department to keep the research grounded in real clinical needs.</p>
   <p class="hero-focus">Self-supervised learning · Medical image analysis · Computer vision</p>
   <div class="hero-stats">
@@ -511,7 +514,7 @@
         <div class="card-body">
           <div class="project-badge">Independent Research · Jun 2026</div>
           <h3>Financial Trade Anomaly Detection</h3>
-          <p>Two-stage pipeline for detecting fraudulent transactions at 0.17% fraud rate. Stage 1: Isolation Forest (unsupervised prior). Stage 2: XGBoost with SMOTE. Ensemble flags only when both agree — 0.952 precision to minimise false positives. SHAP explainability included.</p>
+          <p>Two-stage pipeline for detecting fraudulent transactions at 0.17% fraud rate. Stage 1: Isolation Forest (unsupervised prior). Stage 2: XGBoost with SMOTE. Ensemble flags only when both agree, achieving 0.952 precision to minimise false positives. SHAP explainability included.</p>
           <div class="tag-row">
             <span class="tag">XGBoost</span><span class="tag">Isolation Forest</span>
             <span class="tag">SHAP</span><span class="tag">Scikit-learn</span>
@@ -551,7 +554,7 @@
             <span class="tag green">Sentinel-2</span><span class="tag green">SAR</span>
             <span class="tag">Barlow Twins</span><span class="tag">SimCLR</span><span class="tag">rasterio</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay/wetland-flux-ssl" target="_blank">
+          <a class="card-link" href="https://github.com/meridtesfay/wetland-flux-modeling" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -568,7 +571,7 @@
             <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span>
             <span class="tag">Time-Series</span><span class="tag">PCA</span>
           </div>
-          <a class="card-link" href="https://github.com/meridtesfay/ai4food" target="_blank">
+          <a class="card-link" href="https://github.com/meridtesfay" target="_blank">
             View on GitHub
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
@@ -722,21 +725,21 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2021 – 2023</div>
         <div class="timeline-org">INSA, Ethiopia</div>
-        <div class="timeline-role">Network & Telecom Field Engineer — Federal Civil Service Commission</div>
+        <div class="timeline-role">Network & Telecom Field Engineer, Federal Civil Service Commission</div>
         <div class="timeline-desc">Prepared HLD and technical specifications for enterprise network infrastructure. Supervised vendor implementation with milestone reviews and quality assurance. Developed and executed PAT and FAT procedures for mission-critical systems.</div>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-date">2020 – 2021</div>
         <div class="timeline-org">INSA, Ethiopia</div>
-        <div class="timeline-role">Network & Telecom Field Engineer — Amhara Credit and Saving Institution</div>
+        <div class="timeline-role">Network & Telecom Field Engineer, Amhara Credit and Saving Institution</div>
         <div class="timeline-desc">Designed and installed structured cabling systems (Cat6, fibre optics). Implemented LAN/WAN for banking operations. Developed comprehensive project plans for hardware and software installations.</div>
       </div>
       <div class="timeline-item reveal">
         <div class="timeline-dot"></div>
         <div class="timeline-date">2019 – 2020</div>
         <div class="timeline-org">INSA, Ethiopia</div>
-        <div class="timeline-role">Network & Telecom Field Engineer — National Bank of Ethiopia</div>
+        <div class="timeline-role">Network & Telecom Field Engineer, National Bank of Ethiopia</div>
         <div class="timeline-desc">Configured routing/switching equipment, IP voice services, and enterprise firewalls. Established secure networking environments with comprehensive documentation. Designed resilient network solutions for mission-critical financial infrastructure.</div>
       </div>
     </div>
@@ -765,6 +768,17 @@
         <a class="contact-link" href="tel:+393884670285">
           <span class="contact-icon">☎</span> +39 388 4670285
         </a>
+      </div>
+      <div class="contact-interests reveal">
+        <p class="interests-label">Research interests</p>
+        <div class="interests-tags">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Medical Image Analysis</span>
+          <span class="tag">Self-supervised Learning</span>
+          <span class="tag">Anomaly Detection</span>
+          <span class="tag">Geospatial AI</span>
+          <span class="tag">Multimodal Learning</span>
+        </div>
       </div>
     </div>
   </div>
