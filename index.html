@@ -1,336 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merid Tesfay — ML Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
+    :root{
+      --navy:#0B1F3A;
+      --navy2:#0f2544;
+      --blue:#1A6DC7;
+      --blue-l:#4A9FE8;
+      --accent:#00C9A7;
+      --accent2:#00a98b;
+      --text:#E8EDF3;
+      --muted:#8A9BB5;
+      --border:#1E3558;
+      --card:#0d2240;
+      --card2:#112849;
+      --serif:'DM Serif Display',serif;
+      --mono:'DM Mono',monospace;
+      --sans:'Outfit',sans-serif;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy:#0B1F3A;
-  --navy2:#152d50;
-  --blue:#1A6DC7;
-  --blue-l:#4A9FE8;
-  --accent:#00C9A7;
-  --accent2:#0091E6;
-  --text:#E8EDF3;
-  --muted:#8A9BB5;
-  --border:#1E3558;
-  --card:#0F2540;
-  --card2:#142E52;
-  --serif:'DM Serif Display',serif;
-  --mono:'DM Mono',monospace;
-  --sans:'Outfit',sans-serif;
-}
-body{background:var(--navy);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7}
+    html{scroll-behavior:smooth}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(11,31,58,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px}
-.logo{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--accent);letter-spacing:0.05em}
-.nav-links{display:flex;gap:2rem}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:500;transition:color 0.2s}
-.nav-links a:hover{color:var(--text)}
+    body{
+      background:var(--navy);
+      color:var(--text);
+      font-family:var(--sans);
+      font-size:15px;
+      line-height:1.7;
+      overflow-x:hidden;
+    }
 
-/* SECTIONS */
-.section{max-width:1100px;margin:0 auto;padding:5rem 2rem}
+    /* DOT GRID BACKGROUND */
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      background-image:radial-gradient(circle, rgba(26,109,199,0.12) 1px, transparent 1px);
+      background-size:32px 32px;
+      pointer-events:none;
+      z-index:0;
+    }
 
-/* HERO */
-.hero{padding:7rem 2rem 5rem;max-width:1100px;margin:0 auto}
-.hero-tag{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem}
-.hero-tag::before{content:'';width:32px;height:1px;background:var(--accent)}
-.hero h1{font-family:var(--serif);font-size:clamp(2.8rem,6vw,5rem);line-height:1.1;margin-bottom:1.5rem;color:#fff}
-.hero h1 em{color:var(--accent);font-style:italic}
-.hero-sub{font-size:1.05rem;color:var(--muted);max-width:580px;margin-bottom:2.5rem;font-weight:300}
-.hero-stats{display:flex;gap:2.5rem;margin-bottom:3rem;flex-wrap:wrap}
-.stat-item{text-align:left}
-.stat-num{font-family:var(--mono);font-size:2rem;font-weight:500;color:var(--accent);display:block;line-height:1}
-.stat-label{font-size:12px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-primary{background:var(--accent);color:var(--navy);padding:0.7rem 1.8rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.02em;transition:opacity 0.2s}
-.btn-primary:hover{opacity:0.85}
-.btn-outline{border:1px solid var(--border);color:var(--text);padding:0.7rem 1.8rem;border-radius:4px;text-decoration:none;font-size:14px;transition:border-color 0.2s,color 0.2s}
-.btn-outline:hover{border-color:var(--blue-l);color:var(--blue-l)}
+    /* NAV */
+    nav{
+      position:sticky;top:0;z-index:100;
+      background:rgba(11,31,58,0.85);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(30,53,88,0.8);
+      padding:0 2rem;
+    }
+    .nav-inner{
+      max-width:1100px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;
+      height:58px;
+    }
+    .logo{
+      font-family:var(--mono);font-size:14px;font-weight:500;
+      color:var(--accent);letter-spacing:0.06em;
+      display:flex;align-items:center;gap:8px;
+    }
+    .logo-dot{
+      width:6px;height:6px;border-radius:50%;
+      background:var(--accent);
+      animation:pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+    .nav-links{display:flex;gap:2.2rem}
+    .nav-links a{
+      color:var(--muted);text-decoration:none;font-size:12px;
+      letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
+      transition:color 0.2s;position:relative;padding-bottom:2px;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;
+      height:1px;background:var(--accent);
+      transform:scaleX(0);transition:transform 0.2s;
+    }
+    .nav-links a:hover{color:var(--text)}
+    .nav-links a:hover::after{transform:scaleX(1)}
 
-/* DIVIDER */
-.divider{border:none;border-top:1px solid var(--border);margin:0}
+    /* SECTIONS */
+    section{position:relative;z-index:1}
+    .section-inner{max-width:1100px;margin:0 auto;padding:6rem 2rem}
 
-/* SECTION HEADERS */
-.sec-label{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.6rem}
-.sec-label::before{content:'';width:24px;height:1px;background:var(--accent)}
-.sec-title{font-family:var(--serif);font-size:2.2rem;color:#fff;margin-bottom:3rem}
+    /* SECTION LABELS */
+    .sec-label{
+      font-family:var(--mono);font-size:11px;color:var(--accent);
+      letter-spacing:0.18em;text-transform:uppercase;
+      margin-bottom:0.6rem;
+      display:flex;align-items:center;gap:10px;
+    }
+    .sec-label::before{content:'';width:28px;height:1px;background:var(--accent)}
+    .sec-title{
+      font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.6rem);
+      color:#fff;margin-bottom:3rem;line-height:1.2;
+    }
 
-/* PROJECT GRID */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
-.project-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.6rem;display:flex;flex-direction:column;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden}
-.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--blue-l));opacity:0;transition:opacity 0.2s}
-.project-card:hover{border-color:var(--blue);transform:translateY(-2px)}
-.project-card:hover::before{opacity:1}
-.project-badge{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem}
-.project-card h3{font-family:var(--serif);font-size:1.25rem;color:#fff;margin-bottom:0.7rem;line-height:1.3}
-.project-card p{font-size:13.5px;color:var(--muted);flex:1;margin-bottom:1.2rem;line-height:1.6}
-.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.2rem}
-.tag{font-family:var(--mono);font-size:10px;background:rgba(26,109,199,0.15);border:1px solid rgba(26,109,199,0.3);color:var(--blue-l);padding:3px 8px;border-radius:3px;letter-spacing:0.04em}
-.tag.green{background:rgba(0,201,167,0.1);border-color:rgba(0,201,167,0.3);color:var(--accent)}
-.card-link{font-family:var(--mono);font-size:12px;color:var(--blue-l);text-decoration:none;letter-spacing:0.05em;display:flex;align-items:center;gap:6px;margin-top:auto;transition:color 0.2s}
-.card-link:hover{color:var(--accent)}
-.card-link::after{content:'→'}
-.lead-badge{background:rgba(0,201,167,0.15);border:1px solid rgba(0,201,167,0.3);color:var(--accent);font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:2px;letter-spacing:0.08em;display:inline-block;margin-bottom:0.6rem}
+    /* DIVIDER */
+    hr.divider{
+      border:none;
+      border-top:1px solid var(--border);
+      max-width:1100px;margin:0 auto;
+      position:relative;z-index:1;
+    }
 
-/* SKILLS */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
-.skill-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.4rem}
-.skill-card-title{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
-.skill-list{display:flex;flex-wrap:wrap;gap:6px}
-.skill-pill{font-size:12px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:4px 10px;border-radius:3px}
+    /* HERO */
+    .hero{
+      min-height:92vh;display:flex;align-items:center;
+      max-width:1100px;margin:0 auto;padding:5rem 2rem 4rem;
+      gap:4rem;position:relative;z-index:1;
+    }
+    .hero-left{flex:1;min-width:0}
+    .hero-tag{
+      font-family:var(--mono);font-size:11px;color:var(--accent);
+      letter-spacing:0.18em;text-transform:uppercase;
+      margin-bottom:1.4rem;
+      display:flex;align-items:center;gap:10px;
+    }
+    .hero-tag::before{content:'';width:28px;height:1px;background:var(--accent)}
+    .hero h1{
+      font-family:var(--serif);
+      font-size:clamp(3rem,6vw,5.2rem);
+      line-height:1.08;margin-bottom:1.6rem;color:#fff;
+    }
+    .hero h1 em{color:var(--accent);font-style:italic}
+    .hero-sub{
+      font-size:1rem;color:var(--muted);
+      max-width:520px;margin-bottom:2.8rem;
+      font-weight:300;line-height:1.75;
+    }
+    .hero-stats{
+      display:flex;gap:3rem;margin-bottom:3rem;flex-wrap:wrap;
+    }
+    .stat-item{text-align:left}
+    .stat-num{
+      font-family:var(--mono);font-size:2.2rem;font-weight:500;
+      color:var(--accent);display:block;line-height:1;
+    }
+    .stat-label{
+      font-size:11px;color:var(--muted);
+      letter-spacing:0.08em;text-transform:uppercase;margin-top:5px;
+    }
+    .hero-btns{display:flex;gap:0.9rem;flex-wrap:wrap}
+    .btn-primary{
+      background:var(--accent);color:var(--navy);
+      padding:0.75rem 1.8rem;border-radius:5px;
+      text-decoration:none;font-weight:600;font-size:13.5px;
+      letter-spacing:0.02em;transition:all 0.2s;
+    }
+    .btn-primary:hover{background:var(--accent2);transform:translateY(-1px)}
+    .btn-outline{
+      border:1px solid var(--border);color:var(--text);
+      padding:0.75rem 1.8rem;border-radius:5px;
+      text-decoration:none;font-size:13.5px;
+      transition:all 0.2s;
+    }
+    .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
 
-/* EXPERIENCE */
-.exp-list{display:flex;flex-direction:column;gap:0}
-.exp-item{display:grid;grid-template-columns:140px 1fr;gap:0 2rem;padding:2rem 0;border-bottom:1px solid var(--border)}
-.exp-item:last-child{border-bottom:none}
-.exp-date{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:4px;letter-spacing:0.04em}
-.exp-org{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.3rem}
-.exp-role{font-size:1.05rem;font-weight:500;color:#fff;margin-bottom:0.4rem}
-.exp-desc{font-size:13.5px;color:var(--muted);line-height:1.6}
+    /* HERO TERMINAL CARD */
+    .hero-right{
+      flex:0 0 340px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .terminal{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:10px;width:100%;overflow:hidden;
+      box-shadow:0 24px 64px rgba(0,0,0,0.4);
+    }
+    .terminal-bar{
+      background:var(--card2);border-bottom:1px solid var(--border);
+      padding:10px 14px;display:flex;align-items:center;gap:7px;
+    }
+    .t-dot{width:11px;height:11px;border-radius:50%}
+    .t-dot.r{background:#FF5F57}.t-dot.y{background:#FEBC2E}.t-dot.g{background:#28C840}
+    .terminal-title{
+      font-family:var(--mono);font-size:11px;color:var(--muted);
+      margin-left:auto;margin-right:auto;letter-spacing:0.06em;
+    }
+    .terminal-body{padding:1.4rem 1.6rem;font-family:var(--mono);font-size:12.5px;line-height:2}
+    .t-line{display:flex;gap:8px;align-items:baseline}
+    .t-prompt{color:var(--accent);user-select:none}
+    .t-cmd{color:var(--blue-l)}
+    .t-out{color:var(--muted);padding-left:16px;display:flex;justify-content:space-between}
+    .t-val{color:#fff;font-weight:500}
+    .t-cursor{
+      display:inline-block;width:8px;height:14px;
+      background:var(--accent);margin-left:2px;
+      animation:blink 1s step-end infinite;vertical-align:middle;
+    }
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
-/* EDUCATION */
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.edu-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.6rem}
-.edu-year{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:0.08em;margin-bottom:0.5rem}
-.edu-degree{font-family:var(--serif);font-size:1.15rem;color:#fff;margin-bottom:0.3rem}
-.edu-uni{font-size:13px;color:var(--blue-l);margin-bottom:0.8rem}
-.edu-grade{font-family:var(--mono);font-size:12px;color:var(--accent);background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.25);padding:3px 10px;border-radius:3px;display:inline-block;margin-bottom:0.8rem}
-.edu-detail{font-size:13px;color:var(--muted);line-height:1.6}
+    /* SCROLL ANIMATIONS */
+    .reveal{
+      opacity:0;transform:translateY(24px);
+      transition:opacity 0.6s ease,transform 0.6s ease;
+    }
+    .reveal.visible{opacity:1;transform:translateY(0)}
 
-/* CONTACT */
-.contact-row{display:flex;gap:1rem;flex-wrap:wrap}
-.contact-link{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:0.8rem 1.2rem;text-decoration:none;color:var(--text);font-size:13.5px;transition:border-color 0.2s,color 0.2s}
-.contact-link:hover{border-color:var(--accent);color:var(--accent)}
-.contact-icon{font-size:15px;color:var(--muted)}
-.contact-link:hover .contact-icon{color:var(--accent)}
+    /* FEATURED PROJECT */
+    .featured-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:10px;overflow:hidden;margin-bottom:1.5rem;
+      transition:border-color 0.2s,transform 0.2s;
+      position:relative;
+    }
+    .featured-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+    .featured-bar{
+      height:4px;
+      background:linear-gradient(90deg,var(--accent),var(--blue-l),var(--blue));
+    }
+    .featured-inner{padding:2rem 2.2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+    .featured-label{
+      font-family:var(--mono);font-size:10px;letter-spacing:0.12em;
+      text-transform:uppercase;color:var(--accent);
+      background:rgba(0,201,167,0.1);border:1px solid rgba(0,201,167,0.25);
+      padding:3px 10px;border-radius:3px;display:inline-block;margin-bottom:0.8rem;
+    }
+    .featured-badge{
+      font-family:var(--mono);font-size:10px;color:var(--muted);
+      letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.6rem;
+    }
+    .featured-card h3{
+      font-family:var(--serif);font-size:1.7rem;color:#fff;
+      margin-bottom:0.9rem;line-height:1.2;
+    }
+    .featured-card p{font-size:13.5px;color:var(--muted);line-height:1.7;margin-bottom:1.4rem}
+    .featured-stats{
+      display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.4rem;
+    }
+    .fstat{text-align:center;background:rgba(26,109,199,0.1);border:1px solid rgba(26,109,199,0.2);border-radius:6px;padding:0.8rem 1.2rem}
+    .fstat-num{font-family:var(--mono);font-size:1.4rem;font-weight:500;color:var(--accent);display:block;line-height:1}
+    .fstat-label{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px}
 
-@media(max-width:640px){
-  .edu-grid{grid-template-columns:1fr}
-  .exp-item{grid-template-columns:1fr;gap:0.3rem}
-  .exp-date{padding-top:0}
-  .hero h1{font-size:2.4rem}
-}
-</style>
+    /* PROJECT GRID */
+    .project-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.4rem}
+    .project-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:10px;overflow:hidden;
+      display:flex;flex-direction:column;
+      transition:border-color 0.2s,transform 0.2s;
+    }
+    .project-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+    .card-header{
+      height:5px;
+    }
+    .card-header.cv{background:linear-gradient(90deg,#1A6DC7,#4A9FE8)}
+    .card-header.ml{background:linear-gradient(90deg,#00C9A7,#1A6DC7)}
+    .card-header.geo{background:linear-gradient(90deg,#0091E6,#00C9A7)}
+    .card-header.eng{background:linear-gradient(90deg,#7C3AED,#1A6DC7)}
+    .card-body{padding:1.5rem;display:flex;flex-direction:column;flex:1}
+    .project-badge{
+      font-family:var(--mono);font-size:10px;color:var(--muted);
+      letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.7rem;
+    }
+    .project-card h3{
+      font-family:var(--serif);font-size:1.15rem;color:#fff;
+      margin-bottom:0.7rem;line-height:1.3;
+    }
+    .project-card p{
+      font-size:13px;color:var(--muted);flex:1;
+      margin-bottom:1.2rem;line-height:1.65;
+    }
+    .tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.2rem}
+    .tag{
+      font-family:var(--mono);font-size:10px;
+      background:rgba(26,109,199,0.12);
+      border:1px solid rgba(26,109,199,0.25);
+      color:var(--blue-l);padding:3px 8px;border-radius:3px;letter-spacing:0.03em;
+    }
+    .tag.green{
+      background:rgba(0,201,167,0.1);
+      border-color:rgba(0,201,167,0.3);color:var(--accent);
+    }
+    .card-link{
+      font-family:var(--mono);font-size:11px;color:var(--blue-l);
+      text-decoration:none;letter-spacing:0.06em;
+      display:flex;align-items:center;gap:6px;margin-top:auto;
+      transition:color 0.2s;
+    }
+    .card-link:hover{color:var(--accent)}
+    .card-link svg{transition:transform 0.2s}
+    .card-link:hover svg{transform:translateX(3px)}
+
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.2rem}
+    .skill-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:10px;padding:1.4rem;
+      transition:border-color 0.2s;
+    }
+    .skill-card:hover{border-color:var(--border);border-color:rgba(0,201,167,0.3)}
+    .skill-card-title{
+      font-family:var(--mono);font-size:10.5px;color:var(--accent);
+      letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;
+      display:flex;align-items:center;gap:8px;
+    }
+    .skill-card-title::before{
+      content:'';width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;
+    }
+    .skill-list{display:flex;flex-wrap:wrap;gap:5px}
+    .skill-pill{
+      font-size:12px;color:var(--muted);
+      background:rgba(255,255,255,0.03);
+      border:1px solid var(--border);
+      padding:4px 10px;border-radius:4px;
+      transition:color 0.2s,border-color 0.2s;
+    }
+    .skill-pill:hover{color:var(--text);border-color:rgba(74,159,232,0.4)}
+
+    /* TIMELINE */
+    .timeline{position:relative;padding-left:2rem}
+    .timeline::before{
+      content:'';position:absolute;left:0;top:8px;bottom:8px;
+      width:1px;background:var(--border);
+    }
+    .timeline-item{
+      position:relative;padding:0 0 2.5rem 2rem;
+    }
+    .timeline-item:last-child{padding-bottom:0}
+    .timeline-dot{
+      position:absolute;left:-2rem;top:6px;
+      width:9px;height:9px;border-radius:50%;
+      background:var(--accent);border:2px solid var(--navy);
+      transform:translateX(calc(-50% + 0.5px));
+    }
+    .timeline-date{
+      font-family:var(--mono);font-size:11px;color:var(--muted);
+      letter-spacing:0.06em;margin-bottom:0.4rem;
+    }
+    .timeline-org{
+      font-family:var(--mono);font-size:10.5px;color:var(--accent);
+      letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.3rem;
+    }
+    .timeline-role{font-size:1rem;font-weight:500;color:#fff;margin-bottom:0.4rem}
+    .timeline-desc{font-size:13px;color:var(--muted);line-height:1.65;max-width:640px}
+
+    /* EDUCATION GRID */
+    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-bottom:3.5rem}
+    .edu-card{
+      background:var(--card);border:1px solid var(--border);
+      border-radius:10px;padding:1.7rem;
+      transition:border-color 0.2s;
+    }
+    .edu-card:hover{border-color:rgba(26,109,199,0.4)}
+    .edu-year{
+      font-family:var(--mono);font-size:11px;color:var(--muted);
+      letter-spacing:0.08em;margin-bottom:0.6rem;
+    }
+    .edu-degree{font-family:var(--serif);font-size:1.15rem;color:#fff;margin-bottom:0.3rem}
+    .edu-uni{font-size:13px;color:var(--blue-l);margin-bottom:0.8rem}
+    .edu-detail{font-size:13px;color:var(--muted);line-height:1.6}
+
+    /* CONTACT */
+    .contact-wrap{max-width:640px}
+    .contact-sub{color:var(--muted);font-size:15px;line-height:1.75;margin-bottom:2.4rem}
+    .contact-row{display:flex;gap:0.8rem;flex-wrap:wrap}
+    .contact-link{
+      display:flex;align-items:center;gap:9px;
+      background:var(--card);border:1px solid var(--border);
+      border-radius:7px;padding:0.85rem 1.3rem;
+      text-decoration:none;color:var(--text);font-size:13.5px;
+      transition:all 0.2s;
+    }
+    .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+    .contact-icon{font-size:15px;color:var(--muted)}
+    .contact-link:hover .contact-icon{color:var(--accent)}
+
+    /* FOOTER */
+    .footer{
+      text-align:center;padding:2.5rem 2rem;
+      font-family:var(--mono);font-size:11px;
+      color:var(--border);letter-spacing:0.1em;
+      position:relative;z-index:1;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero{flex-direction:column;min-height:auto;padding-top:4rem;gap:3rem}
+      .hero-right{flex:none;width:100%;max-width:400px;margin:0 auto}
+      .featured-inner{grid-template-columns:1fr}
+      .edu-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .hero h1{font-size:2.6rem}
+      .section-inner{padding:4rem 1.4rem}
+      .hero{padding:3rem 1.4rem 2rem}
+      .nav-links{gap:1.4rem}
+      .hero-stats{gap:2rem}
+    }
+  </style>
+</head>
+<body>
 
 <nav>
   <div class="nav-inner">
-    <span class="logo">merid.t</span>
+    <div class="logo">
+      <div class="logo-dot"></div>
+      merid.t
+    </div>
     <div class="nav-links">
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
+      <a href="#experience">Background</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">ML Researcher</div>
-  <h1>Merid Tesfay<br><em>Machine Learning</em><br>Researcher</h1>
-  <p class="hero-sub">MSc Computer Engineering (AI/ML), University of Trento. Specialising in self-supervised learning, medical image analysis, and contrastive representation learning.</p>
-  <div class="hero-stats">
-    <div class="stat-item"><span class="stat-num">155+</span><span class="stat-label">ML experiments</span></div>
-    <div class="stat-item"><span class="stat-num">500</span><span class="stat-label">Patient dataset</span></div>
-    <div class="stat-item"><span class="stat-num">9</span><span class="stat-label">Research projects</span></div>
+  <div class="hero-left">
+    <div class="hero-tag">ML Researcher</div>
+    <h1>Merid Tesfay<br><em>Machine Learning</em><br>Researcher</h1>
+    <p class="hero-sub">MSc Computer Engineering (AI/ML), University of Trento. Specialising in self-supervised learning, medical image analysis, and contrastive representation learning.</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num" data-target="155">0</span>
+        <span class="stat-label">ML experiments</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="500">0</span>
+        <span class="stat-label">Patient dataset</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-target="9">0</span>
+        <span class="stat-label">Research projects</span>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#contact">Get in touch</a>
+      <a class="btn-outline" href="https://github.com/meridtesfay" target="_blank">GitHub</a>
+      <a class="btn-outline" href="#projects">View work</a>
+    </div>
   </div>
-  <div class="hero-btns">
-    <a class="btn-primary" href="#contact">Get in touch</a>
-    <a class="btn-outline" href="https://github.com/meridtesfay" target="_blank">GitHub</a>
-    <a class="btn-outline" href="#projects">View work</a>
-  </div>
-</div>
 
-<hr class="divider">
-
-<div class="section" id="projects">
-  <div class="sec-label">Work</div>
-  <div class="sec-title">Research Projects</div>
-  <div class="project-grid">
-
-    <div class="project-card">
-      <div class="lead-badge">LEAD PROJECT</div>
-      <div class="project-badge">MSc Thesis · 2024–2026</div>
-      <h3>Brain CT Multi-Label Pathology Classification</h3>
-      <p>Two-stage SSL pipeline on 500 clinical CT volumes. Stage 1: SwinUNETR Masked Autoencoder for 3D pretraining. Stage 2: SimCLR, BYOL, Barlow Twins at slice level with MIL and gated attention pooling. 155 controlled experiments across architectures and SSL objectives.</p>
-      <div class="tag-row">
-        <span class="tag">PyTorch</span><span class="tag">MONAI</span><span class="tag">SwinUNETR</span>
-        <span class="tag">SimCLR</span><span class="tag">BYOL</span><span class="tag">HPC/SLURM</span>
+  <div class="hero-right">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="t-dot r"></div>
+        <div class="t-dot y"></div>
+        <div class="t-dot g"></div>
+        <span class="terminal-title">research_output.py</span>
       </div>
-      <a class="card-link" href="https://github.com/meridtesfay">Under review</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-badge">Independent Research · 2026</div>
-      <h3>CR-MEMO: Consistency-Regularised Test-Time Adaptation</h3>
-      <p>Extended MEMO (NeurIPS 2022) with a KL-divergence consistency term penalising disagreement across augmented test views. Achieved +9.12% accuracy on ImageNet-V2. Full ablation study included. Open-source modular implementation.</p>
-      <div class="tag-row">
-        <span class="tag">PyTorch</span><span class="tag">Test-Time Adaptation</span>
-        <span class="tag">Distribution Shift</span><span class="tag">ImageNet</span>
-      </div>
-      <a class="card-link" href="https://github.com/meridtesfay/CR-MEMO-Consistency-Regularized-Marginal-Entropy-Minimization">View on GitHub</a>
-    </div>
-    <div class="project-card">
-      <div class="project-badge">Independent Research · Jun 2026</div>
-      <h3>Financial Trade Anomaly Detection</h3>
-      <p>Two-stage pipeline for detecting fraudulent transactions at 0.17% fraud rate. Stage 1: Isolation Forest (unsupervised prior, no labels required). Stage 2: XGBoost with SMOTE. Ensemble flags only when both agree — achieving 0.952 precision to minimise false positives for analyst review. SHAP explainability included.</p>
-      <div class="tag-row">
-        <span class="tag">XGBoost</span>
-        <span class="tag">Isolation Forest</span>
-        <span class="tag">SHAP</span>
-        <span class="tag">Scikit-learn</span>
-        <span class="tag green">PR-AUC 0.876</span>
-        <span class="tag green">Precision 0.952</span>
-      </div>
-      <a class="card-link" href="https://github.com/meridtesfay/financial-trade-anomaly-detection" target="_blank">View on GitHub</a>
-    </div>
-    <div class="project-card">
-      <div class="project-badge">Independent Research · Jun 2026</div>
-      <h3>Visual Anomaly Detection on MVTec AD</h3>
-      <p>Unsupervised defect localisation on the MVTec Anomaly Detection benchmark using pretrained ResNet-18 patch embeddings and a nearest-neighbour memory bank. No anomaly labels required, no fine-tuning. Patch scores are bilinearly upsampled to produce per-pixel heatmaps that localise defect regions directly. Follows the PatchCore method (CVPR 2022).</p>
-      <div class="tag-row">
-        <span class="tag">PyTorch</span>
-        <span class="tag">ResNet-18</span>
-        <span class="tag">Unsupervised</span>
-        <span class="tag">MVTec AD</span>
-        <span class="tag green">Image AUROC 1.000</span>
-        <span class="tag green">Pixel AUROC 0.982</span>
-      </div>
-      <a class="card-link" href="https://github.com/meridtesfay/visual-anomaly-detection" target="_blank">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-badge">Independent Research · 2026</div>
-      <h3>Maritime Satellite IoT Link Quality Prediction</h3>
-      <p>Multimodal time-series prediction of satellite link quality (Good / Degraded / Outage) under 3% minority-class imbalance. Fused AIS vessel telemetry, ERA5 weather reanalysis grids, and satellite geometry via multi-head attention. Benchmarked 4 architectures.</p>
-      <div class="tag-row">
-        <span class="tag">Transformer</span><span class="tag">BiLSTM</span>
-        <span class="tag">ERA5</span><span class="tag">Multimodal Fusion</span><span class="tag">AIS</span>
-      </div>
-      <a class="card-link" href="https://github.com/meridtesfay">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-badge">Independent Research · 2026</div>
-      <h3>Wetland Greenhouse Gas Flux Modeling with SSL</h3>
-      <p>Applied Barlow Twins and SimCLR to Sentinel-2 multispectral imagery (13 bands) fused with Sentinel-1 SAR and ERA5 meteorological time-series for CO₂/CH₄ flux prediction in Arctic wetlands under sparse labels.</p>
-      <div class="tag-row">
-        <span class="tag green">Sentinel-2</span><span class="tag green">SAR</span>
-        <span class="tag">Barlow Twins</span><span class="tag">SimCLR</span><span class="tag">rasterio</span>
-      </div>
-      <a class="card-link" href="https://github.com/meridtesfay/wetland-flux-ssl">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-badge">ML Course · 2025</div>
-      <h3>AI4Food: Supervised Classification for Food Quality</h3>
-      <p>Compared 5 classifiers (KNN, SVM, Random Forest, XGBoost, Neural Network) on 1.47M data points of high-dimensional time-series sensor data. 92% accuracy via ensemble methods. Systematic feature engineering, PCA/t-SNE, hyperparameter optimisation.</p>
-      <div class="tag-row">
-        <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span>
-        <span class="tag">Time-Series</span><span class="tag">PCA</span>
-      </div>
-      <a class="card-link" href="https://github.com/meridtesfay/ai4food">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-badge">Multisensory Systems · 2024–2025</div>
-      <h3>Arduino Sign Language Recognition</h3>
-      <p>Real-time ASL gesture recognition using Arduino with 5 flex sensors. C/C++ firmware for sensor acquisition and calibration. Processing (UI) and Pure Data (audio) integration. Validated across multiple users.</p>
-      <div class="tag-row">
-        <span class="tag">Arduino</span><span class="tag">C/C++</span>
-        <span class="tag">Embedded Systems</span><span class="tag">Sensors</span>
-      </div>
-      <a class="card-link" href="https://github.com/xalessiabertanax/MultisensoryProject">View on GitHub</a>
-    </div>
-
-    <div class="project-card">
-      <div class="project-badge">Multimedia Security · 2024–2025</div>
-      <h3>Robust Digital Watermarking via DWT-DCT</h3>
-      <p>Frequency-domain watermarking robust to JPEG compression, Gaussian noise, median filtering, and geometric transforms. Comparative PSNR/SSIM analysis. Reinforces signal processing foundations applicable to image preprocessing pipelines.</p>
-      <div class="tag-row">
-        <span class="tag">Python</span><span class="tag">OpenCV</span>
-        <span class="tag">NumPy</span><span class="tag">Signal Processing</span>
-      </div>
-      <a class="card-link" href="https://github.com/Elia-Tomaselli/mds">View on GitHub</a>
-    </div>
-
-  </div>
-</div>
-
-<hr class="divider">
-
-<div class="section" id="skills">
-  <div class="sec-label">Capabilities</div>
-  <div class="sec-title">Technical Skills</div>
-  <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-card-title">Self-Supervised Learning</div>
-      <div class="skill-list">
-        <span class="skill-pill">SimCLR</span><span class="skill-pill">BYOL</span>
-        <span class="skill-pill">Barlow Twins</span><span class="skill-pill">MoCo</span>
-        <span class="skill-pill">MAE</span><span class="skill-pill">SwinUNETR</span>
-        <span class="skill-pill">Contrastive Learning</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Deep Learning Frameworks</div>
-      <div class="skill-list">
-        <span class="skill-pill">PyTorch (Expert)</span><span class="skill-pill">MONAI</span>
-        <span class="skill-pill">TensorFlow</span><span class="skill-pill">Scikit-learn</span>
-        <span class="skill-pill">HuggingFace</span><span class="skill-pill">W&B</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Computer Vision</div>
-      <div class="skill-list">
-        <span class="skill-pill">Vision Transformers</span><span class="skill-pill">ViT</span>
-        <span class="skill-pill">SwinUNETR</span><span class="skill-pill">U-Net</span>
-        <span class="skill-pill">ResNet</span><span class="skill-pill">DenseNet</span>
-        <span class="skill-pill">Grad-CAM</span><span class="skill-pill">SHAP</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Medical Imaging</div>
-      <div class="skill-list">
-        <span class="skill-pill">CT Preprocessing</span><span class="skill-pill">DICOM</span>
-        <span class="skill-pill">HU Windowing</span><span class="skill-pill">NIfTI</span>
-        <span class="skill-pill">Volumetric Resampling</span><span class="skill-pill">MIL</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Geospatial & Remote Sensing</div>
-      <div class="skill-list">
-        <span class="skill-pill">Sentinel-2</span><span class="skill-pill">Sentinel-1 SAR</span>
-        <span class="skill-pill">ERA5 Reanalysis</span><span class="skill-pill">rasterio</span>
-        <span class="skill-pill">xarray</span><span class="skill-pill">Sentinelhub API</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Infrastructure & MLOps</div>
-      <div class="skill-list">
-        <span class="skill-pill">HPC/SLURM</span><span class="skill-pill">4× A100 GPU</span>
-        <span class="skill-pill">Docker</span><span class="skill-pill">Git</span>
-        <span class="skill-pill">MLflow</span><span class="skill-pill">LaTeX</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Programming</div>
-      <div class="skill-list">
-        <span class="skill-pill">Python (Expert)</span><span class="skill-pill">NumPy</span>
-        <span class="skill-pill">Pandas</span><span class="skill-pill">SciPy</span>
-        <span class="skill-pill">MATLAB</span><span class="skill-pill">C/C++</span>
-        <span class="skill-pill">JavaScript</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-card-title">Network Engineering</div>
-      <div class="skill-list">
-        <span class="skill-pill">Cisco Routing/Switching</span>
-        <span class="skill-pill">LAN/WAN Design</span>
-        <span class="skill-pill">Firewall Config</span>
-        <span class="skill-pill">FortiSIEM</span>
-        <span class="skill-pill">IBM QRadar</span>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">python evaluate.py</span></div>
+        <div class="t-out"><span>Image AUROC</span><span class="t-val">1.000</span></div>
+        <div class="t-out"><span>Pixel AUROC</span><span class="t-val">0.982</span></div>
+        <div class="t-line" style="margin-top:6px"><span class="t-prompt">$</span><span class="t-cmd">python test_tta.py</span></div>
+        <div class="t-out"><span>ImageNet-V2</span><span class="t-val">+9.12%</span></div>
+        <div class="t-out"><span>Distribution shift</span><span class="t-val">robust</span></div>
+        <div class="t-line" style="margin-top:6px"><span class="t-prompt">$</span><span class="t-cmd">python score.py</span></div>
+        <div class="t-out"><span>PR-AUC</span><span class="t-val">0.876</span></div>
+        <div class="t-out"><span>Precision</span><span class="t-val">0.952</span></div>
+        <div class="t-line" style="margin-top:6px"><span class="t-prompt">$</span><span class="t-cmd"><span class="t-cursor"></span></span></div>
       </div>
     </div>
   </div>
@@ -338,72 +468,403 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,31,58,0.92);backdrop-fi
 
 <hr class="divider">
 
-<div class="section" id="experience">
-  <div class="sec-label">Background</div>
-  <div class="sec-title">Education & Experience</div>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="sec-label reveal">Work</div>
+    <div class="sec-title reveal">Research Projects</div>
 
-  <div class="edu-grid" style="margin-bottom:3rem">
-    <div class="edu-card">
-      <div class="edu-year">2022 – 2026</div>
-      <div class="edu-degree">MSc Computer Engineering</div>
-      <div class="edu-uni">University of Trento, Italy</div>
-      <div class="edu-detail">AI/ML track. Thesis: Multi-label brain CT pathology classification via self-supervised learning. Supervisors: Prof. Farid Melgani, Dr. Selene Tomassini. Clinical collaboration: ASUIT Trento Hospital Radiology Dept.</div>
+    <!-- Featured -->
+    <div class="featured-card reveal">
+      <div class="featured-bar"></div>
+      <div class="featured-inner">
+        <div>
+          <div class="featured-label">Lead Project</div>
+          <div class="featured-badge">MSc Thesis · 2024–2026</div>
+          <h3>Brain CT Multi-Label Pathology Classification</h3>
+          <p>Two-stage SSL pipeline on 500 clinical CT volumes. Stage 1: SwinUNETR Masked Autoencoder for 3D volumetric pretraining. Stage 2: SimCLR, BYOL, and Barlow Twins at slice level with MIL and gated attention pooling. 155 controlled experiments across architectures and SSL objectives. Clinical collaboration with ASUIT Trento Hospital Radiology Department.</p>
+          <div class="tag-row">
+            <span class="tag">PyTorch</span><span class="tag">MONAI</span>
+            <span class="tag">SwinUNETR</span><span class="tag">SimCLR</span>
+            <span class="tag">BYOL</span><span class="tag">HPC/SLURM</span>
+          </div>
+          <a class="card-link" href="https://github.com/meridtesfay" target="_blank">
+            Under review
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div>
+          <div class="featured-stats">
+            <div class="fstat"><span class="fstat-num">155</span><span class="fstat-label">Experiments</span></div>
+            <div class="fstat"><span class="fstat-num">500</span><span class="fstat-label">CT volumes</span></div>
+            <div class="fstat"><span class="fstat-num">3</span><span class="fstat-label">SSL methods</span></div>
+          </div>
+          <p style="font-size:13px;color:var(--muted);line-height:1.65">Supervisors: Prof. Farid Melgani, Dr. Selene Tomassini. Evaluated SwinUNETR MAE pretraining against slice-level contrastive objectives with systematic ablation over batch sizes, projection heads, and augmentation strengths.</p>
+        </div>
+      </div>
     </div>
-    <div class="edu-card">
-      <div class="edu-year">2012 – 2017</div>
-      <div class="edu-degree">BSc Electronics & Communication Engineering</div>
-      <div class="edu-uni">Mekelle University, Ethiopia</div>
-      <div class="edu-detail">Digital Signal Processing, Communication Systems, Fourier/Wavelet Analysis, Probability & Statistics, Embedded Systems, MATLAB, Microprocessor Architecture.</div>
+
+    <!-- Project grid -->
+    <div class="project-grid">
+
+      <div class="project-card reveal">
+        <div class="card-header cv"></div>
+        <div class="card-body">
+          <div class="project-badge">Independent Research · 2026</div>
+          <h3>CR-MEMO: Consistency-Regularised Test-Time Adaptation</h3>
+          <p>Extended MEMO (NeurIPS 2022) with a KL-divergence consistency term penalising disagreement across augmented test views. Achieved +9.12% accuracy on ImageNet-V2. Full ablation study included. Open-source modular implementation.</p>
+          <div class="tag-row">
+            <span class="tag">PyTorch</span><span class="tag">Test-Time Adaptation</span>
+            <span class="tag">Distribution Shift</span><span class="tag green">+9.12% ImageNet-V2</span>
+          </div>
+          <a class="card-link" href="https://github.com/meridtesfay/CR-MEMO-Consistency-Regularized-Marginal-Entropy-Minimization" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="card-header ml"></div>
+        <div class="card-body">
+          <div class="project-badge">Independent Research · Jun 2026</div>
+          <h3>Visual Anomaly Detection on MVTec AD</h3>
+          <p>Unsupervised defect localisation using pretrained ResNet-18 patch embeddings and a nearest-neighbour memory bank. No anomaly labels required, no fine-tuning. Per-pixel heatmaps localise defect regions directly. Follows PatchCore (CVPR 2022).</p>
+          <div class="tag-row">
+            <span class="tag">PyTorch</span><span class="tag">ResNet-18</span>
+            <span class="tag">Unsupervised</span><span class="tag">MVTec AD</span>
+            <span class="tag green">Image AUROC 1.000</span><span class="tag green">Pixel AUROC 0.982</span>
+          </div>
+          <a class="card-link" href="https://github.com/meridtesfay/visual-anomaly-detection" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="card-header ml"></div>
+        <div class="card-body">
+          <div class="project-badge">Independent Research · Jun 2026</div>
+          <h3>Financial Trade Anomaly Detection</h3>
+          <p>Two-stage pipeline for detecting fraudulent transactions at 0.17% fraud rate. Stage 1: Isolation Forest (unsupervised prior). Stage 2: XGBoost with SMOTE. Ensemble flags only when both agree — 0.952 precision to minimise false positives. SHAP explainability included.</p>
+          <div class="tag-row">
+            <span class="tag">XGBoost</span><span class="tag">Isolation Forest</span>
+            <span class="tag">SHAP</span><span class="tag">Scikit-learn</span>
+            <span class="tag green">PR-AUC 0.876</span><span class="tag green">Precision 0.952</span>
+          </div>
+          <a class="card-link" href="https://github.com/meridtesfay/financial-trade-anomaly-detection" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="card-header geo"></div>
+        <div class="card-body">
+          <div class="project-badge">Independent Research · 2026</div>
+          <h3>Maritime Satellite IoT Link Quality Prediction</h3>
+          <p>Multimodal time-series prediction of satellite link quality (Good / Degraded / Outage) under 3% minority-class imbalance. Fused AIS vessel telemetry, ERA5 weather reanalysis grids, and satellite geometry via multi-head attention. Benchmarked 4 architectures.</p>
+          <div class="tag-row">
+            <span class="tag">Transformer</span><span class="tag">BiLSTM</span>
+            <span class="tag">ERA5</span><span class="tag">Multimodal Fusion</span><span class="tag">AIS</span>
+          </div>
+          <a class="card-link" href="https://github.com/meridtesfay/maritime-sat-iot" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="card-header geo"></div>
+        <div class="card-body">
+          <div class="project-badge">Independent Research · 2026</div>
+          <h3>Wetland Greenhouse Gas Flux Modeling with SSL</h3>
+          <p>Applied Barlow Twins and SimCLR to Sentinel-2 multispectral imagery (13 bands) fused with Sentinel-1 SAR and ERA5 meteorological time-series for CO₂/CH₄ flux prediction in Arctic wetlands under sparse labels.</p>
+          <div class="tag-row">
+            <span class="tag green">Sentinel-2</span><span class="tag green">SAR</span>
+            <span class="tag">Barlow Twins</span><span class="tag">SimCLR</span><span class="tag">rasterio</span>
+          </div>
+          <a class="card-link" href="https://github.com/meridtesfay/wetland-flux-ssl" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="card-header cv"></div>
+        <div class="card-body">
+          <div class="project-badge">ML Course · 2025</div>
+          <h3>AI4Food: Supervised Classification for Food Quality</h3>
+          <p>Compared 5 classifiers (KNN, SVM, Random Forest, XGBoost, Neural Network) on 1.47M data points of high-dimensional time-series sensor data. 92% accuracy via ensemble methods. Systematic feature engineering, PCA/t-SNE, hyperparameter optimisation.</p>
+          <div class="tag-row">
+            <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span>
+            <span class="tag">Time-Series</span><span class="tag">PCA</span>
+          </div>
+          <a class="card-link" href="https://github.com/meridtesfay/ai4food" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="card-header eng"></div>
+        <div class="card-body">
+          <div class="project-badge">Multisensory Systems · 2024–2025</div>
+          <h3>Arduino Sign Language Recognition</h3>
+          <p>Real-time ASL gesture recognition using Arduino with 5 flex sensors. C/C++ firmware for sensor acquisition and calibration. Processing (UI) and Pure Data (audio) integration. Validated across multiple users.</p>
+          <div class="tag-row">
+            <span class="tag">Arduino</span><span class="tag">C/C++</span>
+            <span class="tag">Embedded Systems</span><span class="tag">Sensors</span>
+          </div>
+          <a class="card-link" href="https://github.com/xalessiabertanax/MultisensoryProject" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="card-header eng"></div>
+        <div class="card-body">
+          <div class="project-badge">Multimedia Security · 2024–2025</div>
+          <h3>Robust Digital Watermarking via DWT-DCT</h3>
+          <p>Frequency-domain watermarking robust to JPEG compression, Gaussian noise, median filtering, and geometric transforms. Comparative PSNR/SSIM analysis. Reinforces signal processing foundations applicable to image preprocessing pipelines.</p>
+          <div class="tag-row">
+            <span class="tag">Python</span><span class="tag">OpenCV</span>
+            <span class="tag">NumPy</span><span class="tag">Signal Processing</span>
+          </div>
+          <a class="card-link" href="https://github.com/Elia-Tomaselli/mds" target="_blank">
+            View on GitHub
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
-
-  <div class="exp-list">
-    <div class="exp-item">
-      <div class="exp-date">2021 – 2023</div>
-      <div>
-        <div class="exp-org">INSA, Ethiopia</div>
-        <div class="exp-role">Network & Telecom Field Engineer · Federal Civil Service Commission</div>
-        <div class="exp-desc">Prepared HLD and technical specifications for enterprise network infrastructure. Supervised vendor implementation with milestone reviews and quality assurance. Developed and executed PAT and FAT procedures for mission-critical systems.</div>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-date">2020 – 2021</div>
-      <div>
-        <div class="exp-org">INSA, Ethiopia</div>
-        <div class="exp-role">Network & Telecom Field Engineer · Amhara Credit and Saving Institution</div>
-        <div class="exp-desc">Designed and installed structured cabling systems (Cat6, fibre optics). Implemented LAN/WAN for banking operations. Developed comprehensive project plans for hardware and software installations.</div>
-      </div>
-    </div>
-    <div class="exp-item">
-      <div class="exp-date">2019 – 2020</div>
-      <div>
-        <div class="exp-org">INSA, Ethiopia</div>
-        <div class="exp-role">Network & Telecom Field Engineer · National Bank of Ethiopia</div>
-        <div class="exp-desc">Configured routing/switching equipment, IP voice services, and enterprise firewalls. Established secure networking environments with comprehensive documentation. Designed resilient network solutions for mission-critical financial infrastructure.</div>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
 <hr class="divider">
 
-<div class="section" id="contact">
-  <div class="sec-label">Reach out</div>
-  <div class="sec-title">Get in Touch</div>
-  <p style="color:var(--muted);max-width:520px;margin-bottom:2rem;font-size:15px">Open to PhD positions in medical AI, ML, and geospatial AI, and industry roles in AI engineering and data science. Available from July 2026.</p>
-  <div class="contact-row">
-    <a class="contact-link" href="mailto:meridtesfay@gmail.com">
-      <span class="contact-icon">✉</span> meridtesfay@gmail.com
-    </a>
-    <a class="contact-link" href="https://github.com/meridtesfay" target="_blank">
-      <span class="contact-icon">⌥</span> GitHub
-    </a>
-    <a class="contact-link" href="https://www.linkedin.com/in/merid-tesfay-9634a9103" target="_blank">
-      <span class="contact-icon">in</span> LinkedIn
-    </a>
-    <a class="contact-link" href="tel:+4561688298">
-      <span class="contact-icon">☎</span> +39 388 4670285
-    </a>
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="sec-label reveal">Capabilities</div>
+    <div class="sec-title reveal">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Self-Supervised Learning</div>
+        <div class="skill-list">
+          <span class="skill-pill">SimCLR</span><span class="skill-pill">BYOL</span>
+          <span class="skill-pill">Barlow Twins</span><span class="skill-pill">MoCo</span>
+          <span class="skill-pill">MAE</span><span class="skill-pill">SwinUNETR</span>
+          <span class="skill-pill">Contrastive Learning</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Deep Learning Frameworks</div>
+        <div class="skill-list">
+          <span class="skill-pill">PyTorch (Expert)</span><span class="skill-pill">MONAI</span>
+          <span class="skill-pill">TensorFlow</span><span class="skill-pill">Scikit-learn</span>
+          <span class="skill-pill">HuggingFace</span><span class="skill-pill">W&B</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Computer Vision</div>
+        <div class="skill-list">
+          <span class="skill-pill">Vision Transformers</span><span class="skill-pill">ViT</span>
+          <span class="skill-pill">SwinUNETR</span><span class="skill-pill">U-Net</span>
+          <span class="skill-pill">ResNet</span><span class="skill-pill">Anomaly Detection</span>
+          <span class="skill-pill">Grad-CAM</span><span class="skill-pill">SHAP</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Medical Imaging</div>
+        <div class="skill-list">
+          <span class="skill-pill">CT Preprocessing</span><span class="skill-pill">DICOM</span>
+          <span class="skill-pill">HU Windowing</span><span class="skill-pill">NIfTI</span>
+          <span class="skill-pill">Volumetric Resampling</span><span class="skill-pill">MIL</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Geospatial & Remote Sensing</div>
+        <div class="skill-list">
+          <span class="skill-pill">Sentinel-2</span><span class="skill-pill">Sentinel-1 SAR</span>
+          <span class="skill-pill">ERA5 Reanalysis</span><span class="skill-pill">rasterio</span>
+          <span class="skill-pill">xarray</span><span class="skill-pill">Sentinelhub API</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Infrastructure & MLOps</div>
+        <div class="skill-list">
+          <span class="skill-pill">HPC/SLURM</span><span class="skill-pill">4x A100 GPU</span>
+          <span class="skill-pill">Docker</span><span class="skill-pill">Git</span>
+          <span class="skill-pill">MLflow</span><span class="skill-pill">LaTeX</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-list">
+          <span class="skill-pill">Python (Expert)</span><span class="skill-pill">NumPy</span>
+          <span class="skill-pill">Pandas</span><span class="skill-pill">SciPy</span>
+          <span class="skill-pill">MATLAB</span><span class="skill-pill">C/C++</span>
+          <span class="skill-pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Network Engineering</div>
+        <div class="skill-list">
+          <span class="skill-pill">Cisco Routing/Switching</span>
+          <span class="skill-pill">LAN/WAN Design</span>
+          <span class="skill-pill">Firewall Config</span>
+          <span class="skill-pill">FortiSIEM</span>
+          <span class="skill-pill">IBM QRadar</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <p style="color:var(--border);font-family:var(--mono);font-size:11px;margin-top:4rem;letter-spacing:0.08em">© 2026 MERID TESFAY</p>
-</div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="sec-label reveal">Background</div>
+    <div class="sec-title reveal">Education & Experience</div>
+
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">2022 – 2026</div>
+        <div class="edu-degree">MSc Computer Engineering</div>
+        <div class="edu-uni">University of Trento, Italy</div>
+        <div class="edu-detail">AI/ML track. Thesis: Multi-label brain CT pathology classification via self-supervised learning. Supervisors: Prof. Farid Melgani, Dr. Selene Tomassini. Clinical collaboration: ASUIT Trento Hospital Radiology Dept.</div>
+      </div>
+      <div class="edu-card reveal">
+        <div class="edu-year">2012 – 2017</div>
+        <div class="edu-degree">BSc Electronics & Communication Engineering</div>
+        <div class="edu-uni">Mekelle University, Ethiopia</div>
+        <div class="edu-detail">Digital Signal Processing, Communication Systems, Fourier/Wavelet Analysis, Probability & Statistics, Embedded Systems, MATLAB, Microprocessor Architecture.</div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2021 – 2023</div>
+        <div class="timeline-org">INSA, Ethiopia</div>
+        <div class="timeline-role">Network & Telecom Field Engineer — Federal Civil Service Commission</div>
+        <div class="timeline-desc">Prepared HLD and technical specifications for enterprise network infrastructure. Supervised vendor implementation with milestone reviews and quality assurance. Developed and executed PAT and FAT procedures for mission-critical systems.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2020 – 2021</div>
+        <div class="timeline-org">INSA, Ethiopia</div>
+        <div class="timeline-role">Network & Telecom Field Engineer — Amhara Credit and Saving Institution</div>
+        <div class="timeline-desc">Designed and installed structured cabling systems (Cat6, fibre optics). Implemented LAN/WAN for banking operations. Developed comprehensive project plans for hardware and software installations.</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2019 – 2020</div>
+        <div class="timeline-org">INSA, Ethiopia</div>
+        <div class="timeline-role">Network & Telecom Field Engineer — National Bank of Ethiopia</div>
+        <div class="timeline-desc">Configured routing/switching equipment, IP voice services, and enterprise firewalls. Established secure networking environments with comprehensive documentation. Designed resilient network solutions for mission-critical financial infrastructure.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="sec-label reveal">Reach out</div>
+    <div class="sec-title reveal">Get in Touch</div>
+    <div class="contact-wrap reveal">
+      <p class="contact-sub">Open to PhD positions in medical AI, ML, and geospatial AI, and industry roles in AI engineering and data science. Available from July 2026.</p>
+      <div class="contact-row">
+        <a class="contact-link" href="mailto:meridtesfay@gmail.com">
+          <span class="contact-icon">✉</span> meridtesfay@gmail.com
+        </a>
+        <a class="contact-link" href="https://github.com/meridtesfay" target="_blank">
+          <span class="contact-icon">⌥</span> GitHub
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/merid-tesfay-9634a9103" target="_blank">
+          <span class="contact-icon">in</span> LinkedIn
+        </a>
+        <a class="contact-link" href="tel:+393884670285">
+          <span class="contact-icon">☎</span> +39 388 4670285
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="footer">© 2026 MERID TESFAY</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger children inside grids
+  document.querySelectorAll('.project-grid, .skills-grid').forEach(grid => {
+    [...grid.querySelectorAll('.reveal')].forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.07) + 's';
+    });
+  });
+
+  // Counter animation
+  const counters = document.querySelectorAll('.stat-num[data-target]');
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      let start = 0;
+      const duration = 1400;
+      const step = timestamp => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.floor(ease * target) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      };
+      requestAnimationFrame(step);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => countObserver.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--text)' : '';
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>
